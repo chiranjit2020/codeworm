@@ -1,0 +1,36 @@
+{
+    "videos": [
+        {
+            "id": 1,
+            "episode": "01",
+            "title": "CODEWORM Introduction | What will we learn here? [BENGALI]",
+            "url": "https://youtu.be/Eb5j_ddv-g0",
+            "thumbnail": "",
+            "playlist": "html"
+        },
+        {
+            "id": 2,
+            "episode": "02",
+            "title": "How to start learning Website Design and Development? | Website Design Syllabus. [BANGLA]",
+            "url": "https://youtu.be/MxnFQt-SUmY",
+            "thumbnail": "",
+            "playlist": "html"
+        },
+        {
+            "id": 3,
+            "episode": "03",
+            "title": "What is Website? Discussion about Notepad++ Code Editor. || Episode -01 [BANGLA]",
+            "url": "https://youtu.be/R4iQd_Ro-Jc",
+            "thumbnail": "",
+            "playlist": "html"
+        },
+        {
+            "id": 4,
+            "episode": "04",
+            "title": "Write Your First HTML Code in Notepad++ || Episode-02 [BANGLA]",
+            "url": "https://youtu.be/5EKuzlEfda0",
+            "thumbnail": "",
+            "playlist": "html"
+        }
+]
+}
