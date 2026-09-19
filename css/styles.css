@@ -643,7 +643,7 @@ fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
 .section--dark .quote { background: linear-gradient(90deg, var(--lime) 0 8px, transparent 8px) no-repeat; }
 
 /* ==========================================================================
-   23. THEME — light (default) and dark. Components only read semantic tokens.
+   23. SEMANTIC TOKENS — components read these, never raw hex.
    ========================================================================== */
 :root {
   --ink: #101010;
@@ -661,50 +661,15 @@ fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
   --glass-shine: rgba(255, 255, 255, .6);
   color-scheme: light;
 }
-:root[data-theme="dark"] {
-  --ink: #f2f2f5;
-  --ground: #0d0d10;
-  --raised: #151519;
-  --dark-bg: #000000;
-  --hover: #202026;
-  --muted: #b6b6c0;
-  --line: #4c4c55;
-  --line-soft: #2a2a31;
-  --gray-500: #9b9ba7;
-  --focus: var(--lime);
-  --btn-shadow: #f2f2f5;
-  --grid-line: rgba(255, 255, 255, .06);
-  --glass-bg: rgba(13, 13, 16, .55);
-  --glass-solid: rgba(13, 13, 16, .95);
-  --glass-edge: rgba(255, 255, 255, .16);
-  --glass-shine: rgba(255, 255, 255, .07);
-  color-scheme: dark;
-}
-html.theme-anim, html.theme-anim *, html.theme-anim *::before, html.theme-anim *::after {
-  transition: background-color 350ms var(--ease), color 350ms var(--ease), border-color 350ms var(--ease), fill 350ms var(--ease) !important;
-}
-:root[data-theme="dark"] .compare__col:not(.compare__col--lab) { background: var(--raised); }
 
-/* the lab column stays a paper-white sheet on the dark section, in both themes */
+/* the lab column stays a paper-white sheet on the dark section */
 .compare__col--lab { background: var(--const-white); color: #101010; border-color: var(--const-white); --muted: #3b3b42; --line-soft: #c8c8d0; }
 .compare__col--lab .compare__title { color: #101010; }
 .compare__col--lab .steps li::before { color: #6f6f7a; }
 
-/* ---------- theme toggle ---------- */
-.header-tools { display: flex; align-items: center; gap: var(--s-2); }
+/* ---------- nav alignment ---------- */
 .site-nav { margin-left: auto; }
-.theme-toggle {
-  display: inline-grid; place-items: center; width: 40px; height: 40px; padding: 0; cursor: pointer;
-  background: transparent; color: var(--ink); border: var(--bw) solid var(--ink); border-radius: var(--radius);
-  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
-}
-.theme-toggle:hover { background: var(--lime); color: var(--on-lime); border-color: var(--on-lime); }
-.theme-toggle svg { width: 18px; height: 18px; grid-area: 1 / 1; transition: transform 400ms var(--ease), opacity 250ms var(--ease); }
-.theme-toggle .i-moon { opacity: 0; transform: rotate(-70deg) scale(.6); }
-:root[data-theme="dark"] .theme-toggle .i-sun { opacity: 0; transform: rotate(70deg) scale(.6); }
-:root[data-theme="dark"] .theme-toggle .i-moon { opacity: 1; transform: none; }
-@media (max-width: 859px) { .header-tools { margin-left: auto; } .site-nav { margin-left: 0; } }
-html:not(.js) .theme-toggle { display: none; }
+@media (max-width: 859px) { .nav-toggle { margin-left: auto; } .site-nav { margin-left: 0; } }
 
 /* ==========================================================================
    24. GLASS — header, mobile menu, CTA panel, veils
@@ -783,6 +748,20 @@ html.lenis, html.lenis body { height: auto; }
 
 /* ---------- 27. FIXES FROM REVIEW ---------- */
 :root { --glass-bg: rgba(249, 249, 253, .78); }
-:root[data-theme="dark"] { --glass-bg: rgba(13, 13, 16, .66); }
 .hero__mark-glass { padding: 10px; }
 @media (min-width: 1000px) { .hero .hero__mark.hero__mark-glass { position: absolute; } }
+
+/* ---------- 28. PWA ---------- */
+.site-footer__meta { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--s-4) var(--s-5); }
+.install {
+  font: inherit; font-family: var(--font-display); font-weight: 700; font-size: var(--text-small); letter-spacing: .02em; text-transform: uppercase;
+  color: var(--const-white); background: transparent; border: 0; border-bottom: 2px solid var(--lime); padding: 2px 0; cursor: pointer;
+}
+.install:hover { background: var(--lime); color: var(--on-lime); }
+.install[hidden] { display: none; }
+
+/* ---------- 29. LOGO ---------- */
+.wordmark { align-items: center; }
+.wordmark__logo { height: 44px; width: auto; display: block; }
+.site-footer .wordmark { display: inline-block; }
+.wordmark__logo--footer { height: clamp(84px, 11vw, 128px); filter: invert(1); }

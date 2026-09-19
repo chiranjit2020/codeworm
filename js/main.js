@@ -26,31 +26,27 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  /* Theme: the saved or system choice is applied by an inline script in <head>
-     (so there is no flash); this only wires up the switch. */
-  const root = document.documentElement;
-  const themeBtn = document.querySelector('.theme-toggle');
-  if (themeBtn) {
-    const sync = () => {
-      const dark = root.dataset.theme === 'dark';
-      themeBtn.setAttribute('aria-pressed', String(dark));
-      const meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.content = dark ? '#0d0d10' : '#f9f9fd';
-    };
-    sync();
-    themeBtn.addEventListener('click', () => {
-      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
-      root.classList.add('theme-anim');
-      root.dataset.theme = next;
-      try { localStorage.setItem('cw-theme', next); } catch (e) { /* private mode: applies for this visit only */ }
-      sync();
-      setTimeout(() => root.classList.remove('theme-anim'), 400);
+  /* PWA: register the service worker (http/https only) and offer "Install app"
+     when the browser says it can. */
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+    window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+  }
+  const installBtn = document.querySelector('.install');
+  if (installBtn && !matchMedia('(display-mode: standalone)').matches) {
+    let deferred = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferred = e;
+      installBtn.hidden = false;
     });
-    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      try { if (localStorage.getItem('cw-theme')) return; } catch (err) { /* ignore */ }
-      root.dataset.theme = e.matches ? 'dark' : 'light';
-      sync();
+    installBtn.addEventListener('click', async () => {
+      if (!deferred) return;
+      deferred.prompt();
+      await deferred.userChoice;
+      deferred = null;
+      installBtn.hidden = true;
     });
+    window.addEventListener('appinstalled', () => { installBtn.hidden = true; });
   }
 
   /* Tabs (WAI-ARIA tab pattern). Without JS every panel is simply shown. */

@@ -180,19 +180,18 @@
       const ty = clamp(1 - (pointer.y - r.top) / Math.max(1, r.height), -0.5, 1.5);
       s.mx += (tx - s.mx) * 0.05;
       s.my += (ty - s.my) * 0.05;
-      const dark = root.dataset.theme === 'dark';
       gl.uniform2f(U.u_res, canvas.width, canvas.height);
       gl.uniform2f(U.u_m, s.mx, s.my);
       gl.uniform1f(U.u_t, t * 0.001);
       gl.uniform1f(U.u_v, s.v);
       gl.uniform1f(U.u_s, scrollY * 0.0006);
       if (veil) {
-        gl.uniform1f(U.u_a, dark ? 0.85 : 0.7);
-        const c = dark ? [0.42, 0.44, 0.5] : [0.62, 0.64, 0.7];
+        gl.uniform1f(U.u_a, 0.7);
+        const c = [0.62, 0.64, 0.7];
         gl.uniform3f(U.u_c, c[0], c[1], c[2]);
       } else {
-        gl.uniform1f(U.u_a, dark ? 0.32 : 0.2);
-        const c = dark ? [0.72, 0.74, 0.82] : [0.3, 0.32, 0.4];
+        gl.uniform1f(U.u_a, 0.2);
+        const c = [0.3, 0.32, 0.4];
         gl.uniform3f(U.u_c, c[0], c[1], c[2]);
       }
       gl.clear(gl.COLOR_BUFFER_BIT);
