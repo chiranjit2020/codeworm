@@ -26,6 +26,26 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
+  /* Favicon: a slowly blinking lime dot. Browsers don't animate SVG favicons,
+     so swap two frames. Off for reduced motion and in the installed app. */
+  const iconLink = document.querySelector('link[rel="icon"]');
+  const stillWanted = matchMedia('(prefers-reduced-motion: reduce)').matches || matchMedia('(display-mode: standalone)').matches;
+  if (iconLink && !stillWanted) {
+    const frame = (opacity) => 'data:image/svg+xml,' + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" fill="#101010"/>' +
+      `<circle cx="16" cy="16" r="8" fill="#B6FF00" fill-opacity="${opacity}"/></svg>`);
+    const frames = [frame(1), frame(0.15)];
+    let i = 0;
+    setInterval(() => {
+      i = 1 - i;
+      // replacing the element (not just href) is what makes every browser repaint the tab icon
+      const next = iconLink.cloneNode();
+      next.href = frames[i];
+      const old = document.querySelector('link[rel="icon"]');
+      if (old) old.replaceWith(next);
+    }, 900);
+  }
+
   /* PWA: register the service worker (http/https only) and offer "Install app"
      when the browser says it can. */
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
