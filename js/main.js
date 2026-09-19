@@ -2,6 +2,7 @@
    Every page is readable and usable without this file. */
 (() => {
   'use strict';
+  const SELF_SRC = document.currentScript && document.currentScript.src;
 
   /* Navigation: collapsible on small screens */
   const header = document.querySelector('.site-header');
@@ -48,8 +49,9 @@
 
   /* PWA: register the service worker (http/https only) and offer "Install app"
      when the browser says it can. */
-  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
-    window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http') && SELF_SRC) {
+    const swUrl = new URL('../sw.js', SELF_SRC).href; // next to index.html, wherever the current page lives
+    window.addEventListener('load', () => { navigator.serviceWorker.register(swUrl).catch(() => {}); });
   }
   const installBtn = document.querySelector('.install');
   if (installBtn && !matchMedia('(display-mode: standalone)').matches) {

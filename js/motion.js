@@ -1,7 +1,14 @@
 /* CODEWORM — motion layer.
    Smooth scroll (Lenis), scroll reveals, word scrub, and the smoke veil.
    Pure enhancement: skipped entirely under prefers-reduced-motion, and every
-   page reads correctly if this file never runs. */
+   page reads correctly if this file never runs.
+
+   Performance rules this file follows
+   - Never read layout inside the frame loop: element positions are measured
+     once (and on resize/load) and derived from the scroll offset afterwards.
+   - WebGL canvases are created only when their section is near the viewport.
+   - Ambient smoke redraws at 20 fps, and rests after a few seconds without scroll
+     or pointer movement; writes are skipped when nothing changed. */
 (() => {
   'use strict';
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -18,7 +25,30 @@
   const scrollFns = [];  // run when the scroll position changed
   let dirty = true;
 
-  addEventListener('resize', () => { vh = innerHeight; dirty = true; });
+  /* ---------- Geometry cache: measure in batches, never per frame ---------- */
+  const geo = new Map(); // element -> { top (document coords), left, w, h }
+  const measure = (el) => {
+    const r = el.getBoundingClientRect();
+    geo.set(el, { top: r.top + scrollY, left: r.left, w: r.width, h: r.height });
+  };
+  const track = (el) => {
+    measure(el);
+    return {
+      top: () => geo.get(el).top - scrollY,   // viewport-relative top
+      get: () => geo.get(el),
+    };
+  };
+  const remeasureAll = () => { geo.forEach((_, el) => measure(el)); dirty = true; };
+  let remeasureQueued = false;
+  const queueRemeasure = () => {
+    if (remeasureQueued) return;
+    remeasureQueued = true;
+    requestAnimationFrame(() => { remeasureQueued = false; vh = innerHeight; remeasureAll(); });
+  };
+  addEventListener('resize', queueRemeasure);
+  addEventListener('load', () => { queueRemeasure(); setTimeout(queueRemeasure, 1600); }); // 1.6 s: after the reveals settle
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(queueRemeasure);
+  if ('ResizeObserver' in window) new ResizeObserver(queueRemeasure).observe(document.body);
 
   /* ---------- Lenis smooth scroll ---------- */
   if (window.Lenis) {
@@ -91,21 +121,24 @@
     walk(el);
     return words;
   }
-  const scrubs = $$('.statement, .definition').map((el) => ({ el, words: splitWords(el) }));
+  const scrubs = $$('.statement, .definition').map((el) => ({ el, words: splitWords(el), g: track(el), last: -1 }));
   scrollFns.push(() => {
-    scrubs.forEach(({ el, words }) => {
-      const r = el.getBoundingClientRect();
-      if (r.bottom < -100 || r.top > vh + 100) return;
-      const p = clamp((vh * 0.88 - r.top) / (vh * 0.43 + r.height));
-      const n = words.length;
-      words.forEach((w, i) => {
-        const o = 0.18 + 0.82 * clamp((p - (i / n) * 0.8) / 0.2);
+    scrubs.forEach((s) => {
+      const { top, h } = s.g.get();
+      const t = top - scrollY;
+      if (t + h < -100 || t > vh + 100) return;
+      const p = clamp((vh * 0.88 - t) / (vh * 0.43 + h));
+      if (Math.abs(p - s.last) < 0.004) return;
+      s.last = p;
+      const n = s.words.length;
+      s.words.forEach((w, i) => {
+        const o = 0.5 + 0.5 * clamp((p - (i / n) * 0.8) / 0.2);
         w.style.setProperty('--o', o.toFixed(2));
       });
     });
   });
 
-  /* ---------- Smoke (WebGL) ---------- */
+  /* ---------- Smoke (WebGL), created lazily ---------- */
   const VERT = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
   const FRAG = [
     'precision mediump float;',
@@ -129,15 +162,18 @@
   ].join('\n');
 
   const smokes = [];
+  let smokeDisabled = false;
   const pointer = { x: -9999, y: -9999 };
-  addEventListener('pointermove', (e) => { pointer.x = e.clientX; pointer.y = e.clientY; }, { passive: true });
+  let lastActive = performance.now();      // last scroll or pointer movement
+  const IDLE_MS = 5000;                    // ambient smoke rests after this long without input
+  addEventListener('pointermove', (e) => { pointer.x = e.clientX; pointer.y = e.clientY; lastActive = performance.now(); }, { passive: true });
 
-  function makeSmoke(host, { veil = false, className = '' } = {}) {
+  function initSmoke(s) {
     const canvas = document.createElement('canvas');
     canvas.setAttribute('aria-hidden', 'true');
-    if (className) canvas.className = className;
+    if (s.className) canvas.className = s.className;
     const gl = canvas.getContext('webgl', { premultipliedAlpha: true, antialias: false, alpha: true, powerPreference: 'low-power' });
-    if (!gl) return null;
+    if (!gl) return false;
 
     const compile = (type, src) => {
       const sh = gl.createShader(type);
@@ -147,12 +183,12 @@
     };
     const vs = compile(gl.VERTEX_SHADER, VERT);
     const fs = compile(gl.FRAGMENT_SHADER, FRAG);
-    if (!vs || !fs) return null;
+    if (!vs || !fs) return false;
     const prog = gl.createProgram();
     gl.attachShader(prog, vs);
     gl.attachShader(prog, fs);
     gl.linkProgram(prog);
-    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return null;
+    if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return false;
     gl.useProgram(prog);
 
     const buf = gl.createBuffer();
@@ -164,48 +200,78 @@
     const U = {};
     ['u_res', 'u_m', 'u_t', 'u_v', 'u_a', 'u_s', 'u_c'].forEach((k) => { U[k] = gl.getUniformLocation(prog, k); });
 
-    const s = { host, canvas, veil, active: false, v: veil ? 1 : 0.42, mx: 0.5, my: 0.5, first: true };
-    const SCALE = 0.4; // render at 40%: smoke is soft, and this keeps GPU cost small
-    const resize = () => {
-      const w = Math.max(2, Math.round(host.clientWidth * SCALE));
-      const h = Math.max(2, Math.round(host.clientHeight * SCALE));
+    const SCALE = s.veil ? 0.4 : 0.3; // smoke is soft; low resolution keeps GPU cost small
+    const size = () => {
+      const g = s.g.get();
+      const w = Math.max(2, Math.round(g.w * SCALE));
+      const h = Math.max(2, Math.round(g.h * SCALE));
       if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); }
     };
-    new ResizeObserver(resize).observe(host);
-    resize();
 
+    s.canvas = canvas;
     s.draw = (t) => {
-      const r = host.getBoundingClientRect();
-      const tx = clamp((pointer.x - r.left) / Math.max(1, r.width), -0.5, 1.5);
-      const ty = clamp(1 - (pointer.y - r.top) / Math.max(1, r.height), -0.5, 1.5);
+      size();
+      const g = s.g.get();
+      const top = g.top - scrollY;
+      const tx = clamp((pointer.x - g.left) / Math.max(1, g.w), -0.5, 1.5);
+      const ty = clamp(1 - (pointer.y - top) / Math.max(1, g.h), -0.5, 1.5);
       s.mx += (tx - s.mx) * 0.05;
       s.my += (ty - s.my) * 0.05;
       gl.uniform2f(U.u_res, canvas.width, canvas.height);
       gl.uniform2f(U.u_m, s.mx, s.my);
-      gl.uniform1f(U.u_t, t * 0.001);
+      gl.uniform1f(U.u_t, s.time * 0.001);
       gl.uniform1f(U.u_v, s.v);
       gl.uniform1f(U.u_s, scrollY * 0.0006);
-      if (veil) {
-        gl.uniform1f(U.u_a, 0.7);
-        const c = [0.62, 0.64, 0.7];
-        gl.uniform3f(U.u_c, c[0], c[1], c[2]);
-      } else {
-        gl.uniform1f(U.u_a, 0.2);
-        const c = [0.3, 0.32, 0.4];
-        gl.uniform3f(U.u_c, c[0], c[1], c[2]);
-      }
+      if (s.veil) { gl.uniform1f(U.u_a, 0.7); gl.uniform3f(U.u_c, 0.62, 0.64, 0.7); }
+      else { gl.uniform1f(U.u_a, 0.2); gl.uniform3f(U.u_c, 0.3, 0.32, 0.4); }
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       if (s.first) { s.first = false; canvas.classList.add('is-on'); }
     };
+    s.host.prepend(canvas);
+    return true;
+  }
 
-    new IntersectionObserver(([e]) => { s.active = e.isIntersecting; }).observe(host);
-    host.prepend(canvas);
+  // Ambient smoke isn't needed for first paint: wait for load, then for an idle moment.
+  let idleOK = false;
+  const idleWaiters = [];
+  const onIdle = () => { idleOK = true; idleWaiters.splice(0).forEach((f) => f()); };
+  const afterLoad = () => ('requestIdleCallback' in window ? requestIdleCallback(onIdle, { timeout: 1500 }) : setTimeout(onIdle, 400));
+  if (document.readyState === 'complete') afterLoad(); else addEventListener('load', afterLoad, { once: true });
+
+  function makeSmoke(host, { veil = false, className = '' } = {}) {
+    const s = { host, veil, className, g: track(host), active: false, ready: false, failed: false,
+                v: veil ? 1 : 0.42, mx: 0.5, my: 0.5, first: true, lastDraw: 0, time: 0, inView: false, draw: null, canvas: null };
     smokes.push(s);
+    if (!('IntersectionObserver' in window)) return s;
+    // Create the canvas (and compile the shader) only once the section is near the viewport.
+    const start = () => {
+      if (smokeDisabled || s.failed || s.ready || !s.inView) return;
+      s.ready = initSmoke(s);
+      s.failed = !s.ready;
+      s.active = s.ready;
+    };
+    new IntersectionObserver(([e]) => {
+      s.inView = e.isIntersecting;
+      if (smokeDisabled || s.failed) return;
+      if (s.inView && !s.ready) {
+        // veils are part of the intro and start at once; ambient smoke waits for idle
+        if (s.veil || idleOK) start(); else idleWaiters.push(start);
+      }
+      s.active = s.inView && s.ready;
+    }, { rootMargin: '250px 0px' }).observe(host);
     return s;
   }
   frameFns.push((t) => {
-    for (const s of smokes) if (s.active && (!s.veil || s.v > 0.015)) s.draw(t);
+    const resting = t - lastActive > IDLE_MS;
+    for (const s of smokes) {
+      if (!s.active || (s.veil && s.v <= 0.015)) continue;
+      if (!s.veil && (resting || t - s.lastDraw < 50)) continue; // ambient: 20 fps, and still when nobody is moving
+      const dt = s.lastDraw ? Math.min(t - s.lastDraw, 100) : 16;
+      s.time += dt;                 // animation clock only advances while drawing, so resuming never jumps
+      s.lastDraw = t;
+      s.draw(t);
+    }
   });
 
   /* Ambient smoke behind hero, page heads and the closing call-to-action */
@@ -218,10 +284,13 @@
     el.setAttribute('aria-hidden', 'true');
     host.append(el);
     const sm = makeSmoke(el, { veil: true });
+    let shown = -1;
     const set = (v) => {
+      if (sm) sm.v = v;
+      if (Math.abs(v - shown) < 0.004) return; // nothing visible changed: skip the style write
+      shown = v;
       el.style.setProperty('--v', v.toFixed(3));
       el.toggleAttribute('data-done', v < 0.015);
-      if (sm) sm.v = v;
     };
     set(1);
     return { el, set };
@@ -251,10 +320,11 @@
   // Glass panels clear as they scroll into view
   $$('.cta__card').forEach((card) => {
     const vl = makeVeil(card);
+    const g = track(card);
     let cur = 1;
     frameFns.push(() => {
-      const top = card.getBoundingClientRect().top;
-      const target = 1 - clamp((vh * 0.92 - top) / (vh * 0.4));
+      const target = 1 - clamp((vh * 0.92 - g.top()) / (vh * 0.4));
+      if (Math.abs(target - cur) < 0.002) return; // settled (also true while far off-screen)
       cur += (target - cur) * 0.12;
       vl.set(cur);
     });
@@ -266,6 +336,7 @@
   const btn = box && box.querySelector('[data-blackbox-toggle]');
   if (layer && btn) {
     const vl = makeVeil(layer);
+    const g = track(layer);
     const label = btn.querySelector('span');
     let pinned = null; // null = follow scroll; 'clear' | 'veil' = the reader's override
     let cur = 1;
@@ -278,9 +349,8 @@
       label.textContent = on ? 'Bring the smoke back' : 'Clear the smoke';
     });
     frameFns.push(() => {
-      let target;
-      if (pinned) target = pinned === 'clear' ? 0 : 1;
-      else target = 1 - clamp((vh * 0.85 - layer.getBoundingClientRect().top) / (vh * 0.4));
+      const target = pinned ? (pinned === 'clear' ? 0 : 1) : 1 - clamp((vh * 0.85 - g.top()) / (vh * 0.4));
+      if (Math.abs(target - cur) < 0.002) return;
       cur += (target - cur) * 0.1;
       vl.set(cur);
     });
@@ -296,8 +366,8 @@
     if (lastT) samples.push(t - lastT);
     lastT = t;
     if (samples.length === 90 && samples.reduce((a, b) => a + b, 0) / 90 > 38) {
-      smokes.forEach((s) => { s.active = false; s.canvas.remove(); });
-      smokes.length = 0;
+      smokeDisabled = true;
+      smokes.forEach((s) => { s.active = false; if (s.canvas) s.canvas.remove(); });
       root.classList.add('no-smoke');
     }
   });
@@ -306,7 +376,7 @@
   const tick = (t) => {
     requestAnimationFrame(tick);
     const y = readY();
-    if (y !== scrollY) { scrollY = y; dirty = true; }
+    if (y !== scrollY) { scrollY = y; dirty = true; lastActive = t; }
     for (const f of frameFns.slice()) f(t);
     if (dirty) { dirty = false; for (const f of scrollFns) f(scrollY); }
   };

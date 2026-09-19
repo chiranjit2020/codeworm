@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -11,21 +11,29 @@
   <meta property="og:title" content="About — CODEWORM Build Lab">
   <meta property="og:description" content="The next generation of developers needs stronger judgment, not merely faster typing.">
   <meta property="og:url" content="https://www.chiranjitkarmakar.com/codeworm/about.html">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://www.chiranjitkarmakar.com/codeworm/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="CODEWORM Build Lab: AI writes the code. You own the decisions.">
+  <meta property="og:locale" content="en">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.chiranjitkarmakar.com/codeworm/img/og.png">
+  <meta name="twitter:image:alt" content="CODEWORM Build Lab: AI writes the code. You own the decisions.">
   <meta name="theme-color" content="#f9f9fd">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-title" content="CODEWORM">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="preload" href="fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
   <meta name="color-scheme" content="light">
   <script>document.documentElement.classList.add('js')</script>
   <script src="js/vendor/lenis.min.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/motion.js" defer></script>
+  <script src="js/reading.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","name":"About — CODEWORM Build Lab","url":"https://www.chiranjitkarmakar.com/codeworm/about.html","isPartOf":{"@id":"https://www.chiranjitkarmakar.com/codeworm/#site"}}</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -43,7 +51,12 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <div class="header-tools">
+        <button class="reading-toggle" type="button" aria-pressed="false" aria-label="Reading guide" title="Reading guide: underlines the sentence you are probably reading" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 11h16"/><path d="M4 17h9" stroke-width="3.5"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      </div>
     </div>
   </header>
 
@@ -107,7 +120,7 @@
         <div class="section-head">
           <p class="eyebrow">How this site is built</p>
           <h2 id="colophon-title">The website should practise what it teaches.</h2>
-          <p>Seven decisions, with the reasoning and the cost. If the requirements change, so will these.</p>
+          <p>Eight decisions, with the reasoning and the cost. If the requirements change, so will these.</p>
         </div>
 
         <dl class="decisions">
@@ -132,6 +145,11 @@
             <dd><b>Cost</b>About 12&nbsp;KB of gzipped JavaScript and some GPU work the site did not need before. Revisit if it ever hurts reading, Core Web Vitals or battery.</dd>
           </div>
           <div>
+            <dt>An opt-in reading guide, without a camera</dt>
+            <dd><b>Why</b>It underlines the sentence you're probably reading, inferred from where you scroll and from your pointer or touch. It is off until you switch it on, works on-device, and sends nothing anywhere.</dd>
+            <dd><b>Cost</b>It is a guess, not eye tracking: it can be a line off, and it stays quiet while you skim. It needs a browser with the CSS Custom Highlight API; elsewhere the switch simply doesn't appear.</dd>
+          </div>
+          <div>
             <dt>Installable, and readable offline</dt>
             <dd><b>Why</b>A manifest and one small service worker: every page works offline after a first visit, and the site can live on a home screen. Content is fetched fresh whenever you're online.</dd>
             <dd><b>Cost</b>A cache to keep honest. The worker has a version constant that must change when files are added or removed. There is still no offline content beyond the site itself.</dd>
@@ -142,9 +160,9 @@
             <dd><b>Cost</b>No delivery confirmation, and it depends on the visitor having an email client. Revisit if volume justifies a backend.</dd>
           </div>
           <div>
-            <dt>Two typefaces, from a font service</dt>
-            <dd><b>Why</b>A grotesk for display and Manrope for everything else carry the identity without decoration.</dd>
-            <dd><b>Cost</b>A third-party request. Self-hosting is the next step if performance or privacy demands it.</dd>
+            <dt>Two typefaces, self-hosted</dt>
+            <dd><b>Why</b>A grotesk for display and Manrope for everything else carry the identity without decoration. Serving them from this site means no third-party request, no render-blocking font stylesheet, and type that works offline.</dd>
+            <dd><b>Cost</b>About 47&nbsp;KB of font files we now carry ourselves, one Latin subset each. Other scripts fall back to system fonts.</dd>
           </div>
         </dl>
       </div>

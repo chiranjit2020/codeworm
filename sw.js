@@ -5,12 +5,12 @@
    Strategy
    - Same-origin files: network first (fresh whenever online), fall back to the
      cache. A slow network gives up after 3 s if there is a cached copy.
-   - Fonts: stale-while-revalidate, so type survives offline.
-   - Everything else (mailto:, other origins): untouched.
+   - Everything else (mailto:, other origins): untouched. The site has no
+     third-party requests: fonts are self-hosted and part of the shell.
 
    Bump VERSION when the SHELL list changes (files added/removed). Content
    edits do not need a bump: network-first picks them up. */
-const VERSION = 'cw-v1';
+const VERSION = 'cw-v2';
 
 const SHELL = [
   './',
@@ -24,8 +24,11 @@ const SHELL = [
   'css/styles.css',
   'js/main.js',
   'js/motion.js',
+  'js/reading.js',
   'js/vendor/lenis.min.js',
   'favicon.svg',
+  'fonts/manrope-latin.woff2',
+  'fonts/space-grotesk-latin.woff2',
   'manifest.webmanifest',
   'img/codeworm-logo.png',
   'icons/icon-192.png',
@@ -33,7 +36,6 @@ const SHELL = [
   'icons/apple-touch-icon.png',
 ];
 
-const FONT_HOSTS = ['fonts.googleapis.com', 'fonts.gstatic.com'];
 const NETWORK_TIMEOUT = 3000;
 
 self.addEventListener('install', (event) => {
@@ -55,11 +57,7 @@ self.addEventListener('fetch', (event) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
 
-  if (url.origin === self.location.origin) {
-    event.respondWith(networkFirst(req));
-  } else if (FONT_HOSTS.includes(url.hostname)) {
-    event.respondWith(staleWhileRevalidate(req));
-  }
+  if (url.origin === self.location.origin) event.respondWith(networkFirst(req));
 });
 
 async function networkFirst(req) {
@@ -93,14 +91,4 @@ async function offlineFallback(req, cache, err) {
     if (home) return home;
   }
   throw err;
-}
-
-async function staleWhileRevalidate(req) {
-  const cache = await caches.open(VERSION);
-  const cached = await cache.match(req);
-  const refresh = fetch(req).then((res) => {
-    if (res.ok || res.type === 'opaque') cache.put(req, res.clone());
-    return res;
-  }).catch(() => cached);
-  return cached || refresh;
 }

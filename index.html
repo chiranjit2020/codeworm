@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -11,21 +11,29 @@
   <meta property="og:title" content="CODEWORM Build Lab — AI writes the code. You own the decisions.">
   <meta property="og:description" content="A laboratory for engineering judgment. Understand, design, break, secure and defend software systems.">
   <meta property="og:url" content="https://www.chiranjitkarmakar.com/codeworm/">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://www.chiranjitkarmakar.com/codeworm/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="CODEWORM Build Lab: AI writes the code. You own the decisions.">
+  <meta property="og:locale" content="en">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.chiranjitkarmakar.com/codeworm/img/og.png">
+  <meta name="twitter:image:alt" content="CODEWORM Build Lab: AI writes the code. You own the decisions.">
   <meta name="theme-color" content="#f9f9fd">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-title" content="CODEWORM">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="preload" href="fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
   <meta name="color-scheme" content="light">
   <script>document.documentElement.classList.add('js')</script>
   <script src="js/vendor/lenis.min.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/motion.js" defer></script>
+  <script src="js/reading.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.chiranjitkarmakar.com/codeworm/#org","name":"CODEWORM Build Lab","url":"https://www.chiranjitkarmakar.com/codeworm/","logo":"https://www.chiranjitkarmakar.com/codeworm/img/codeworm-logo.png"},{"@type":"WebSite","@id":"https://www.chiranjitkarmakar.com/codeworm/#site","name":"CODEWORM Build Lab","url":"https://www.chiranjitkarmakar.com/codeworm/","inLanguage":"en","publisher":{"@id":"https://www.chiranjitkarmakar.com/codeworm/#org"}}]}</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -43,7 +51,12 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <div class="header-tools">
+        <button class="reading-toggle" type="button" aria-pressed="false" aria-label="Reading guide" title="Reading guide: underlines the sentence you are probably reading" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 11h16"/><path d="M4 17h9" stroke-width="3.5"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      </div>
     </div>
   </header>
 
@@ -124,7 +137,7 @@
         </div>
 
         <div data-blackbox>
-          <ol class="chain" aria-label="From idea to deployment">
+          <ol class="chain">
             <li class="chain__step"><span class="chain__n">01</span><span class="chain__name">Idea</span><span class="chain__note">Yours.</span></li>
             <li class="chain__layer">
               <p class="chain__layer-label">Decision layer <span>— invisible in the generated result</span></p>
@@ -185,7 +198,7 @@
           <h2 id="lab-title">A laboratory for developing engineering judgment.</h2>
           <p>Not a place to watch programming lessons. Every problem moves through the same ten stages.</p>
         </div>
-        <ol class="cells" aria-label="Build Lab stages">
+        <ol class="cells">
           <li><span class="n">01</span><span class="w">Problem</span></li>
           <li><span class="n">02</span><span class="w">Model</span></li>
           <li><span class="n">03</span><span class="w">Decide</span></li>
@@ -211,7 +224,7 @@
           <p>We care whether you can explain why you chose it.</p>
         </div>
 
-        <ol class="flow" aria-label="From problem to implementation">
+        <ol class="flow">
           <li><b>Problem</b></li>
           <li><b>Constraints</b></li>
           <li><b>Requirements</b></li>
