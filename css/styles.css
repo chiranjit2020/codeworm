@@ -765,3 +765,31 @@ html.lenis, html.lenis body { height: auto; }
 .wordmark__logo { height: 44px; width: auto; display: block; }
 .site-footer .wordmark { display: inline-block; }
 .wordmark__logo--footer { height: clamp(84px, 11vw, 128px); filter: invert(1); }
+
+/* ---------- 30. FROSTED MOBILE MENU ----------
+   A backdrop-filter inside another backdrop-filter has nothing to sample, so
+   the header's frosting lives on a background layer (::before) instead of on
+   the header itself. That frees the dropdown to frost the page behind it. */
+.site-header { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.site-header::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header::before { background: var(--glass-solid); }
+}
+@media (max-width: 859px) {
+  .js .site-nav {
+    background: linear-gradient(135deg, var(--glass-shine), transparent 60%), rgba(249, 249, 253, .6);
+    -webkit-backdrop-filter: blur(24px) saturate(170%);
+    backdrop-filter: blur(24px) saturate(170%);
+    border-bottom: var(--bw) solid var(--glass-edge);
+    box-shadow: inset 0 1px 0 var(--glass-shine), 0 18px 32px -24px rgba(16, 16, 16, .35);
+  }
+  .js .site-nav a { border-top-color: rgba(16, 16, 16, .12); }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  @media (max-width: 859px) { .js .site-nav { background: var(--glass-solid); } }
+}
