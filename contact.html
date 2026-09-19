@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact — Bring us a problem | CODEWORM Build Lab</title>
   <meta name="description" content="Don't send a job title or a list of technologies. Bring something you don't understand, something that keeps failing, or something you're trying to design.">
@@ -74,7 +76,7 @@
       <div class="wrap contact-grid">
 
         <div class="contact-grid__aside stack" role="group" aria-labelledby="good-title">
-          <h2 id="good-title" style="font-size: var(--text-h3)">A good problem looks like…</h2>
+          <h2 id="good-title" class="fs-h3">A good problem looks like…</h2>
           <ul class="bring">
             <li>“I don’t understand why this system behaves this way.”</li>
             <li>“This keeps failing and I can’t find the cause.”</li>

@@ -827,3 +827,15 @@ html.lenis, html.lenis body { height: auto; }
    (Highlights can only style colour, background and text-decoration, so no animation and no reflow.) */
 ::highlight(cw-read-light) { background-color: rgba(182, 255, 0, .38); text-decoration: underline; text-decoration-color: #101010; text-decoration-thickness: 2px; }
 ::highlight(cw-read-dark)  { background-color: rgba(182, 255, 0, .14); text-decoration: underline; text-decoration-color: #b6ff00; text-decoration-thickness: 2px; }
+
+/* ---------- 33. UTILITIES (replace inline styles, so the CSP needs no 'unsafe-inline') ---------- */
+.mt-5 { margin-top: var(--s-5); }
+.mt-6 { margin-top: var(--s-6); }
+.mt-7 { margin-top: var(--s-7); }
+.mb-0 { margin-bottom: 0; }
+.mb-8 { margin-bottom: var(--s-8); }
+.mt-fluid { margin-top: clamp(48px, 7vw, 96px); }
+.ideas { display: grid; gap: clamp(48px, 8vw, 112px); }
+.text-fg { color: var(--fg); }
+.f-display { font-family: var(--font-display); font-weight: 700; }
+.fs-h3 { font-size: var(--text-h3); }

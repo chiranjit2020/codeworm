@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Labs — CODEWORM Build Lab</title>
   <meta name="description" content="Experiments that follow a system from problem to lesson, including where it failed. The evolving knowledge base of CODEWORM Build Lab.">
@@ -136,7 +138,7 @@
     <!-- EXAMPLE FAILURES -->
     <section class="section" aria-labelledby="fail-title">
       <div class="wrap split split--wide-right">
-        <div class="section-head" style="margin-bottom:0">
+        <div class="section-head mb-0">
           <p class="eyebrow">Preview — LAB 001</p>
           <h2 id="fail-title">Click a failure to open the investigation.</h2>
           <p>These are the hypotheses we’ll test in the authentication lab. They are questions, not findings.</p>

@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About — CODEWORM Build Lab</title>
   <meta name="description" content="Why CODEWORM exists: years of teaching and building software, and the realisation that developers now need stronger judgment, not faster typing.">
@@ -73,7 +75,7 @@
     <!-- STORY -->
     <section class="section section--white" aria-labelledby="why-title">
       <div class="wrap split split--wide-right">
-        <div class="section-head" style="margin-bottom:0">
+        <div class="section-head mb-0">
           <p class="eyebrow">Why CODEWORM exists</p>
           <h2 id="why-title">We spent years teaching the part that’s now being automated.</h2>
         </div>
@@ -89,7 +91,7 @@
     <!-- STANCE -->
     <section class="section section--dark" aria-labelledby="stance-title">
       <div class="wrap split">
-        <div class="section-head" style="margin-bottom:0">
+        <div class="section-head mb-0">
           <p class="eyebrow">What we won’t do</p>
           <h2 id="stance-title">The tone is part of the product.</h2>
         </div>
@@ -120,7 +122,7 @@
         <div class="section-head">
           <p class="eyebrow">How this site is built</p>
           <h2 id="colophon-title">The website should practice what it teaches.</h2>
-          <p>Nine decisions, with the reasoning and the cost. If the requirements change, so will these.</p>
+          <p>Ten decisions, with the reasoning and the cost. If the requirements change, so will these.</p>
         </div>
 
         <dl class="decisions">
@@ -148,6 +150,11 @@
             <dt>An opt-in reading guide, without a camera</dt>
             <dd><b>Why</b>It underlines the sentence you’re probably reading, inferred from where you scroll and from your pointer or touch. It is off until you switch it on, works on-device, and sends nothing anywhere.</dd>
             <dd><b>Cost</b>It is a guess, not eye tracking: it can be a line off, and it stays quiet while you skim. It needs a browser with the CSS Custom Highlight API; elsewhere the switch simply doesn’t appear.</dd>
+          </div>
+          <div>
+            <dt>A strict security policy, in the page itself</dt>
+            <dd><b>Why</b>GitHub Pages can’t send security headers, so every page carries a Content-Security-Policy tag: scripts, styles, fonts, images and requests may only come from this site. Nothing inline runs except one pinned script. That’s also why the site has no inline styles.</dd>
+            <dd><b>Cost</b>A new inline script or style won’t run until the policy changes, and editing the one pinned script means recomputing its hash. A tag can’t stop other sites from framing this one; that needs a real header.</dd>
           </div>
           <div>
             <dt>Search and sharing metadata, written by hand</dt>

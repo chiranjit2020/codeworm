@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Method — CODEWORM Build Lab</title>
   <meta name="description" content="How we reason about systems: language-independent decisions, security as judgment, and using AI as an implementation partner rather than an authority.">
@@ -78,7 +80,7 @@
           <p>We care whether you can explain why you chose it. The route from problem to code is the same whatever the stack.</p>
         </div>
 
-        <ol class="flow" style="margin-bottom: var(--s-8)">
+        <ol class="flow mb-8">
           <li><b>Problem</b></li>
           <li><b>Constraints</b></li>
           <li><b>Requirements</b></li>
@@ -128,14 +130,14 @@
           </div>
         </div>
 
-        <p class="lead" style="margin-top: var(--s-7); color: var(--fg); font-family: var(--font-display); font-weight: 700;">“Why MongoDB?” matters more than “Can you write a MongoDB query?”</p>
+        <p class="lead mt-7 text-fg f-display">“Why MongoDB?” matters more than “Can you write a MongoDB query?”</p>
       </div>
     </section>
 
     <!-- SECURITY -->
     <section class="section section--dark" aria-labelledby="sec-title">
       <div class="wrap split split--wide-right">
-        <div class="section-head" style="margin-bottom:0">
+        <div class="section-head mb-0">
           <p class="eyebrow">02 — Security</p>
           <h2 id="sec-title">Security is not a module. It’s a way of reading a system.</h2>
           <p>We don’t teach it as a checklist at the end. We ask the same six questions of every system from the first sketch.</p>
@@ -176,7 +178,7 @@
           <li><span class="n">09</span><b>Own</b><p>Keep the decisions. If you couldn’t defend it, don’t ship it.</p></li>
         </ul>
 
-        <div class="quote" style="margin-top: clamp(48px, 7vw, 96px)">
+        <div class="quote mt-fluid">
           <p>Never confuse generated with understood.</p>
         </div>
       </div>

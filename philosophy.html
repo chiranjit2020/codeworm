@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Philosophy — CODEWORM Build Lab</title>
   <meta name="description" content="Programming is becoming cheaper. Engineering judgment is becoming more valuable. The ideas behind CODEWORM Build Lab, and what proportional engineering means.">
@@ -73,7 +75,7 @@
     <section class="section section--white" aria-labelledby="ideas-title">
       <div class="wrap">
         <h2 class="vh" id="ideas-title">Three ideas</h2>
-        <div class="stack" style="display:grid; gap: clamp(48px, 8vw, 112px)">
+        <div class="stack ideas">
           <div class="split split--wide-right">
             <p class="eyebrow">Idea 01</p>
             <div class="stack">
@@ -146,7 +148,7 @@
           </div>
         </div>
 
-        <p class="definition" style="margin-top: clamp(48px, 7vw, 96px)">Build the simplest system that adequately satisfies the actual requirements — and know when that simplicity must change.</p>
+        <p class="definition mt-fluid">Build the simplest system that adequately satisfies the actual requirements — and know when that simplicity must change.</p>
       </div>
     </section>
 
