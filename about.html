@@ -66,7 +66,7 @@
       <div class="wrap">
         <p class="eyebrow">About</p>
         <h1 class="wide">Faster typing was never the point.</h1>
-        <p class="lead">CODEWORM started from a simple observation about what programming education has been optimising for.</p>
+        <p class="lead">CODEWORM started from a simple observation about what programming education has been optimizing for.</p>
       </div>
     </section>
 
@@ -75,13 +75,13 @@
       <div class="wrap split split--wide-right">
         <div class="section-head" style="margin-bottom:0">
           <p class="eyebrow">Why CODEWORM exists</p>
-          <h2 id="why-title">We spent years teaching the part that's now being automated.</h2>
+          <h2 id="why-title">We spent years teaching the part that’s now being automated.</h2>
         </div>
         <div class="prose">
           <p>For years we taught developers to write code. For years we built software ourselves. Both taught us the same thing: the hard part was never the syntax.</p>
           <p>Then AI began writing code, applications, tests and documentation. Much of what programming education sells — how to produce an implementation — is becoming a commodity.</p>
-          <p>What isn't becoming a commodity is knowing what to build, why, and whether the thing that got built is any good. <strong>The next generation of developers needs stronger judgment, not merely faster typing.</strong></p>
-          <p>CODEWORM Build Lab is our attempt to teach that. We don't claim to have finished working out how.</p>
+          <p>What isn’t becoming a commodity is knowing what to build, why, and whether the thing that got built is any good. <strong>The next generation of developers needs stronger judgment, not merely faster typing.</strong></p>
+          <p>CODEWORM Build Lab is our attempt to teach that. We don’t claim to have finished working out how.</p>
         </div>
       </div>
     </section>
@@ -90,7 +90,7 @@
     <section class="section section--dark" aria-labelledby="stance-title">
       <div class="wrap split">
         <div class="section-head" style="margin-bottom:0">
-          <p class="eyebrow">What we won't do</p>
+          <p class="eyebrow">What we won’t do</p>
           <h2 id="stance-title">The tone is part of the product.</h2>
         </div>
         <ul class="notlist">
@@ -109,7 +109,7 @@
         <div class="section-head">
           <p class="eyebrow">Still researching</p>
           <h2 id="research-title">CODEWORM is itself an experiment.</h2>
-          <p>We're continuously building, breaking and re-examining our own assumptions — in the labs, and in how we teach. When we change our minds, we'll say so.</p>
+          <p>We’re continuously building, breaking and re-examining our own assumptions — in the labs, and in how we teach. When we change our minds, we’ll say so.</p>
         </div>
       </div>
     </section>
@@ -119,8 +119,8 @@
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow">How this site is built</p>
-          <h2 id="colophon-title">The website should practise what it teaches.</h2>
-          <p>Eight decisions, with the reasoning and the cost. If the requirements change, so will these.</p>
+          <h2 id="colophon-title">The website should practice what it teaches.</h2>
+          <p>Nine decisions, with the reasoning and the cost. If the requirements change, so will these.</p>
         </div>
 
         <dl class="decisions">
@@ -136,22 +136,27 @@
           </div>
           <div>
             <dt>JavaScript only as enhancement</dt>
-            <dd><b>Why</b>Three small scripts handle the menu, tabs and motion. Every page reads and works without them.</dd>
+            <dd><b>Why</b>Four small scripts handle the menu and tabs, motion, smooth scroll and the reading guide. Every page reads and works without them.</dd>
             <dd><b>Cost</b>Motion is switched off for reduced-motion settings, and the smoke drops away on slow GPUs. The site is calmer there, not broken.</dd>
           </div>
           <div>
             <dt>Smooth scroll, glass and smoke</dt>
-            <dd><b>Why</b>Scroll-linked motion appears only where it carries meaning: the decision layer clears from smoke as you reach it, and statements light up as you read them. One self-hosted library (Lenis) and one small WebGL shader.</dd>
-            <dd><b>Cost</b>About 12&nbsp;KB of gzipped JavaScript and some GPU work the site did not need before. Revisit if it ever hurts reading, Core Web Vitals or battery.</dd>
+            <dd><b>Why</b>Scroll-linked motion appears only where it carries meaning. The decision layer clears from smoke as you reach it. Statements light up as you read them. One self-hosted library (Lenis), one small WebGL shader.</dd>
+            <dd><b>Cost</b>About 17&nbsp;KB of gzipped JavaScript in total, plus GPU work the site did not need before. Revisit if it ever hurts reading, Core Web Vitals or battery.</dd>
           </div>
           <div>
             <dt>An opt-in reading guide, without a camera</dt>
-            <dd><b>Why</b>It underlines the sentence you're probably reading, inferred from where you scroll and from your pointer or touch. It is off until you switch it on, works on-device, and sends nothing anywhere.</dd>
-            <dd><b>Cost</b>It is a guess, not eye tracking: it can be a line off, and it stays quiet while you skim. It needs a browser with the CSS Custom Highlight API; elsewhere the switch simply doesn't appear.</dd>
+            <dd><b>Why</b>It underlines the sentence you’re probably reading, inferred from where you scroll and from your pointer or touch. It is off until you switch it on, works on-device, and sends nothing anywhere.</dd>
+            <dd><b>Cost</b>It is a guess, not eye tracking: it can be a line off, and it stays quiet while you skim. It needs a browser with the CSS Custom Highlight API; elsewhere the switch simply doesn’t appear.</dd>
+          </div>
+          <div>
+            <dt>Search and sharing metadata, written by hand</dt>
+            <dd><b>Why</b>A sitemap, canonical addresses, a share image and a little structured data describe the site accurately to search engines and link previews. No plugin, no generator: a few small files.</dd>
+            <dd><b>Cost</b>The addresses are written into every page. If the site ever moves, they need a find-and-replace.</dd>
           </div>
           <div>
             <dt>Installable, and readable offline</dt>
-            <dd><b>Why</b>A manifest and one small service worker: every page works offline after a first visit, and the site can live on a home screen. Content is fetched fresh whenever you're online.</dd>
+            <dd><b>Why</b>A manifest and one small service worker: every page works offline after a first visit, and the site can live on a home screen. Content is fetched fresh whenever you’re online.</dd>
             <dd><b>Cost</b>A cache to keep honest. The worker has a version constant that must change when files are added or removed. There is still no offline content beyond the site itself.</dd>
           </div>
           <div>
@@ -172,7 +177,7 @@
       <div class="wrap">
         <div class="cta__card glass">
           <h2 id="cta-title">Disagree with a decision?</h2>
-          <p>Tell us which one and why. That's the kind of conversation we're here for.</p>
+          <p>Tell us which one and why. That’s the kind of conversation we’re here for.</p>
           <a class="btn" href="contact.html">Start a conversation
             <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
           </a>
