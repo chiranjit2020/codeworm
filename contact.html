@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Bring us a problem | CODEWORM Build Lab</title>
+  <meta name="description" content="Don't send a job title or a list of technologies. Bring something you don't understand, something that keeps failing, or something you're trying to design.">
+  <link rel="canonical" href="https://codeworm.dev/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CODEWORM Build Lab">
+  <meta property="og:title" content="Bring us a problem — CODEWORM Build Lab">
+  <meta property="og:description" content="Something you don't understand, something that keeps failing, or something you're trying to design.">
+  <meta property="og:url" content="https://codeworm.dev/contact.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#f9f9fd">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="wordmark" href="index.html" aria-label="CODEWORM Build Lab — home">Codeworm <small>Build Lab</small></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="philosophy.html">Philosophy</a></li>
+          <li><a href="build-lab.html">Build-Lab</a></li>
+          <li><a href="method.html">Method</a></li>
+          <li><a href="labs.html">Labs</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" aria-current="page">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero grid-bg">
+      <div class="wrap">
+        <p class="eyebrow">Contact</p>
+        <h1>Bring us a problem.</h1>
+        <p class="lead">Don't send us a job title. Don't send us a list of technologies. Bring us something you don't understand, something that keeps failing, or something you are trying to design.</p>
+      </div>
+    </section>
+
+    <section class="section section--white" aria-label="Contact form">
+      <div class="wrap contact-grid">
+
+        <aside class="contact-grid__aside stack" aria-labelledby="good-title">
+          <h2 id="good-title" style="font-size: var(--text-h3)">A good problem looks like…</h2>
+          <ul class="bring">
+            <li>“I don’t understand why this system behaves this way.”</li>
+            <li>“This keeps failing and I can’t find the cause.”</li>
+            <li>“I’m designing something and I’m not sure it’s the right shape.”</li>
+            <li>“AI generated this and I can’t tell if I should trust it.”</li>
+          </ul>
+          <p class="form__aside">Short is fine. Precise is better. You'll hear back from a person.</p>
+        </aside>
+
+        <form class="form" id="form" data-contact data-to="hello@codeworm.dev" action="mailto:hello@codeworm.dev" method="post" enctype="text/plain">
+          <fieldset>
+            <legend>I want to…</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="intent" value="understand-system"><span>Understand a system</span></label>
+              <label class="chip"><input type="radio" name="intent" value="solve-problem"><span>Solve an engineering problem</span></label>
+              <label class="chip"><input type="radio" name="intent" value="review-architecture"><span>Review an architecture</span></label>
+              <label class="chip"><input type="radio" name="intent" value="investigate-failure"><span>Investigate a failure</span></label>
+              <label class="chip"><input type="radio" name="intent" value="improve-security"><span>Improve security</span></label>
+              <label class="chip"><input type="radio" name="intent" value="decide-technology"><span>Decide between technologies</span></label>
+              <label class="chip"><input type="radio" name="intent" value="learn-build-lab"><span>Learn through Build Lab</span></label>
+              <label class="chip"><input type="radio" name="intent" value="other"><span>Discuss something else</span></label>
+            </div>
+          </fieldset>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="working">What are you working on?</label>
+            <input id="working" name="working" type="text" placeholder="A system, a product, a migration…">
+          </div>
+
+          <div class="field">
+            <label for="problem">What problem are you facing?</label>
+            <textarea id="problem" name="problem" required aria-describedby="problem-hint"></textarea>
+            <span class="hint" id="problem-hint">What happens, what you expected, and what you don't understand.</span>
+          </div>
+
+          <div class="field">
+            <label for="tried">What have you already tried? <span class="opt">(optional)</span></label>
+            <textarea id="tried" name="tried"></textarea>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="link">Project or GitHub link <span class="opt">(optional)</span></label>
+              <input id="link" name="link" type="url" placeholder="https://" inputmode="url">
+            </div>
+            <div class="field">
+              <label for="experience">Experience level</label>
+              <select id="experience" name="experience">
+                <option value="">Choose one</option>
+                <option>Early — still getting things running</option>
+                <option>Intermediate — shipping, want more depth</option>
+                <option>Experienced — several years professionally</option>
+                <option>Senior — lead or architect</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn" type="submit">Start the conversation
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+            </button>
+          </div>
+          <p class="form__status" role="status" aria-live="polite"></p>
+          <p class="form__aside">This opens your email app with the message ready to send. We don't store anything on this site. Prefer to write it yourself? <a href="mailto:hello@codeworm.dev?subject=Engineering%20problem">Send an engineering problem</a>.</p>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="site-footer__top">
+        <div>
+          <a class="wordmark" href="index.html">Codeworm</a>
+          <p class="tagline">Technology changes. Engineering reasoning transfers.</p>
+        </div>
+        <nav aria-label="Footer">
+          <ul>
+            <li><a href="philosophy.html">Philosophy</a></li>
+            <li><a href="build-lab.html">Build-Lab</a></li>
+            <li><a href="method.html">Method</a></li>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© 2026 CODEWORM Build Lab</span>
+        <span class="status">Open to problems</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

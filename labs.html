@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Labs — CODEWORM Build Lab</title>
+  <meta name="description" content="Experiments that follow a system from problem to lesson, including where it failed. The evolving knowledge base of CODEWORM Build Lab.">
+  <link rel="canonical" href="https://codeworm.dev/labs.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CODEWORM Build Lab">
+  <meta property="og:title" content="Labs — CODEWORM Build Lab">
+  <meta property="og:description" content="Experiments that follow a system from problem to lesson, including where it failed.">
+  <meta property="og:url" content="https://codeworm.dev/labs.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#f9f9fd">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="wordmark" href="index.html" aria-label="CODEWORM Build Lab — home">Codeworm <small>Build Lab</small></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="philosophy.html">Philosophy</a></li>
+          <li><a href="build-lab.html">Build-Lab</a></li>
+          <li><a href="method.html">Method</a></li>
+          <li><a href="labs.html" aria-current="page">Labs</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero grid-bg">
+      <div class="wrap">
+        <p class="eyebrow">Experiments</p>
+        <h1 class="wide">We break things so you can see why they break.</h1>
+        <p class="lead">Each lab follows one system from problem to lesson — including the parts a finished tutorial would leave out. This is the site's evolving knowledge base.</p>
+      </div>
+    </section>
+
+    <!-- INDEX -->
+    <section class="section section--white" aria-labelledby="index-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Lab index</p>
+          <h2 id="index-title">Six experiments in the queue.</h2>
+          <p>None are published yet. Each will appear here when the work is done — not before.</p>
+        </div>
+        <div class="labs">
+          <article class="lab-card">
+            <div class="lab-card__top"><span class="lab-card__id">LAB 001</span><span class="tag">Planned</span></div>
+            <div><h3>Authentication Failure</h3><p>What actually fails when an authentication system is attacked?</p></div>
+            <p class="lab-card__tags">Security · Failure</p>
+          </article>
+          <article class="lab-card">
+            <div class="lab-card__top"><span class="lab-card__id">LAB 002</span><span class="tag">Planned</span></div>
+            <div><h3>MongoDB vs PostgreSQL</h3><p>Same requirements, two databases. Where does each one hurt?</p></div>
+            <p class="lab-card__tags">Trade-offs · Data</p>
+          </article>
+          <article class="lab-card">
+            <div class="lab-card__top"><span class="lab-card__id">LAB 003</span><span class="tag">Planned</span></div>
+            <div><h3>When Microservices Are a Mistake</h3><p>A system split too early, and what it cost.</p></div>
+            <p class="lab-card__tags">Architecture · Overengineering</p>
+          </article>
+          <article class="lab-card">
+            <div class="lab-card__top"><span class="lab-card__id">LAB 004</span><span class="tag">Planned</span></div>
+            <div><h3>Breaking an AI-Generated API</h3><p>What does a generated API assume — and where does it give way?</p></div>
+            <p class="lab-card__tags">AI · Security · Verification</p>
+          </article>
+          <article class="lab-card">
+            <div class="lab-card__top"><span class="lab-card__id">LAB 005</span><span class="tag">Planned</span></div>
+            <div><h3>Designing a System for 100 Users</h3><p>How little engineering is enough?</p></div>
+            <p class="lab-card__tags">Proportionality · Simplicity</p>
+          </article>
+          <article class="lab-card">
+            <div class="lab-card__top"><span class="lab-card__id">LAB 006</span><span class="tag">Planned</span></div>
+            <div><h3>Designing the Same System for 1M Users</h3><p>What changes, what doesn't, and what it costs to find out.</p></div>
+            <p class="lab-card__tags">Scale · Trade-offs</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANATOMY -->
+    <section class="section section--dark" aria-labelledby="anatomy-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">How every experiment is written</p>
+          <h2 id="anatomy-title">Eight fields. The reasoning stays on the page.</h2>
+          <p>A lab isn't a walkthrough. It's a record of what we decided, what happened, and what we'd do differently.</p>
+        </div>
+        <ol class="anatomy">
+          <li><span class="n">01</span><span class="k">Problem</span><p>What we set out to solve, and under which constraints.</p></li>
+          <li><span class="n">02</span><span class="k">Decision</span><p>What we chose.</p></li>
+          <li><span class="n">03</span><span class="k">Reason</span><p>Why — and what we rejected.</p></li>
+          <li><span class="n">04</span><span class="k">Implementation</span><p>What we built, briefly.</p></li>
+          <li><span class="n">05</span><span class="k">Failure</span><p>Where it broke, or where we broke it.</p></li>
+          <li><span class="n">06</span><span class="k">Investigation</span><p>How we found the real cause.</p></li>
+          <li><span class="n">07</span><span class="k">Result</span><p>What we measured or observed.</p></li>
+          <li><span class="n">08</span><span class="k">Lesson</span><p>What transfers to the next system.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- EXAMPLE FAILURES -->
+    <section class="section" aria-labelledby="fail-title">
+      <div class="wrap split split--wide-right">
+        <div class="section-head" style="margin-bottom:0">
+          <p class="eyebrow">Preview — LAB 001</p>
+          <h2 id="fail-title">Click a failure to open the investigation.</h2>
+          <p>These are the hypotheses we'll test in the authentication lab. They are questions, not findings.</p>
+        </div>
+
+        <div class="failures">
+          <details class="failure"><summary><span class="failure__pill">Failure</span>A session survives a password change</summary>
+            <dl class="failure__body">
+              <dt>Hypothesis</dt><dd>Sessions are issued once and never re-checked against credential changes.</dd>
+              <dt>Investigation</dt><dd>Change the password in one browser. Try to keep using the old session in another.</dd>
+              <dt>Decision at stake</dt><dd>Where session state lives, and what can revoke it.</dd>
+            </dl></details>
+          <details class="failure"><summary><span class="failure__pill">Failure</span>Login errors reveal which accounts exist</summary>
+            <dl class="failure__body">
+              <dt>Hypothesis</dt><dd>Different responses for "unknown user" and "wrong password" let an attacker enumerate accounts.</dd>
+              <dt>Investigation</dt><dd>Compare responses, status codes and timing for both cases.</dd>
+              <dt>Decision at stake</dt><dd>How much the system tells an unauthenticated stranger.</dd>
+            </dl></details>
+          <details class="failure"><summary><span class="failure__pill">Failure</span>Nothing notices a credential-stuffing run</summary>
+            <dl class="failure__body">
+              <dt>Hypothesis</dt><dd>Thousands of failed logins from many addresses look like ordinary traffic to a system without detection.</dd>
+              <dt>Investigation</dt><dd>Replay a synthetic run and check what the system logs, limits and reports.</dd>
+              <dt>Decision at stake</dt><dd>What "abnormal" means, and who finds out.</dd>
+            </dl></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta grid-bg" aria-labelledby="cta-title">
+      <div class="wrap">
+        <h2 id="cta-title">Suggest a failure.</h2>
+        <p>Have something that broke in a way you couldn't explain? It might be a lab.</p>
+        <a class="btn" href="contact.html?intent=investigate-failure">Investigate a failure
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="site-footer__top">
+        <div>
+          <a class="wordmark" href="index.html">Codeworm</a>
+          <p class="tagline">Technology changes. Engineering reasoning transfers.</p>
+        </div>
+        <nav aria-label="Footer">
+          <ul>
+            <li><a href="philosophy.html">Philosophy</a></li>
+            <li><a href="build-lab.html">Build-Lab</a></li>
+            <li><a href="method.html">Method</a></li>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© 2026 CODEWORM Build Lab</span>
+        <span class="status">Open to problems</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

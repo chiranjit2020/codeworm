@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Philosophy — CODEWORM Build Lab</title>
+  <meta name="description" content="Programming is becoming cheaper. Engineering judgment is becoming more valuable. The ideas behind CODEWORM Build Lab, and what proportional engineering means.">
+  <link rel="canonical" href="https://codeworm.dev/philosophy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CODEWORM Build Lab">
+  <meta property="og:title" content="Philosophy — CODEWORM Build Lab">
+  <meta property="og:description" content="Programming is becoming cheaper. Engineering judgment is becoming more valuable.">
+  <meta property="og:url" content="https://codeworm.dev/philosophy.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#f9f9fd">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="wordmark" href="index.html" aria-label="CODEWORM Build Lab — home">Codeworm <small>Build Lab</small></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="philosophy.html" aria-current="page">Philosophy</a></li>
+          <li><a href="build-lab.html">Build-Lab</a></li>
+          <li><a href="method.html">Method</a></li>
+          <li><a href="labs.html">Labs</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero grid-bg">
+      <div class="wrap">
+        <p class="eyebrow">Philosophy</p>
+        <h1>Programming is becoming cheaper.</h1>
+        <p class="lead">Engineering judgment is becoming more valuable. That is the whole argument. Everything on this page follows from it.</p>
+      </div>
+    </section>
+
+    <!-- THREE IDEAS -->
+    <section class="section section--white" aria-labelledby="ideas-title">
+      <div class="wrap">
+        <h2 class="vh" id="ideas-title">Three ideas</h2>
+        <div class="stack" style="display:grid; gap: clamp(48px, 8vw, 112px)">
+          <div class="split split--wide-right">
+            <p class="eyebrow">Idea 01</p>
+            <div class="stack">
+              <p class="statement">Generated is not the same as understood.</p>
+              <p class="lead">Code that runs is evidence that something was produced. It is not evidence that anyone knows why it works, when it stops working, or what it quietly assumes.</p>
+            </div>
+          </div>
+          <div class="split split--wide-right">
+            <p class="eyebrow">Idea 02</p>
+            <div class="stack">
+              <p class="statement">The job is not to produce the most code. It is to produce the right system.</p>
+              <p class="lead">When implementation is cheap, the expensive mistakes move upstream — to what was built, why, and for whom.</p>
+            </div>
+          </div>
+          <div class="split split--wide-right">
+            <p class="eyebrow">Idea 03</p>
+            <div class="stack">
+              <p class="statement">Technology changes. Engineering reasoning transfers.</p>
+              <p class="lead">A framework has a shelf life. The ability to model a problem, weigh options and defend a decision does not. We teach the second one.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROPORTIONAL ENGINEERING -->
+    <section class="section section--dark" aria-labelledby="prop-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Engineering judgment</p>
+          <h2 id="prop-title">Every system can be wrong in two directions.</h2>
+          <p>Judging a system means knowing how much engineering the actual requirements deserve — no more, no less.</p>
+        </div>
+
+        <div class="spectrum">
+          <div>
+            <p class="k">Too little</p>
+            <h3>Underengineered</h3>
+            <p class="small">Less engineering than the requirements demand.</p>
+            <ul>
+              <li>Weak validation</li>
+              <li>Poor security</li>
+              <li>No failure handling</li>
+              <li>Fragile architecture</li>
+              <li>Missing observability</li>
+            </ul>
+          </div>
+          <div class="mid">
+            <p class="k">Just enough</p>
+            <h3>Proportional</h3>
+            <p class="small">The engineering matches the requirements — and you know when they'll change.</p>
+            <ul>
+              <li>Simple where it can be</li>
+              <li>Rigorous where it must be</li>
+              <li>Decisions written down</li>
+              <li>Known triggers for change</li>
+            </ul>
+          </div>
+          <div>
+            <p class="k">Too much</p>
+            <h3>Overengineered</h3>
+            <p class="small">More engineering than the requirements justify.</p>
+            <ul>
+              <li>Unnecessary microservices</li>
+              <li>Premature scaling</li>
+              <li>Excessive abstraction</li>
+              <li>Unnecessary dependencies</li>
+              <li>Solving problems that don't exist</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="definition" style="margin-top: clamp(48px, 7vw, 96px)">Build the simplest system that adequately satisfies the actual requirements — and know when that simplicity must change.</p>
+      </div>
+    </section>
+
+    <!-- BEFORE / AFTER -->
+    <section class="section" aria-labelledby="ba-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Same system, different requirements</p>
+          <h2 id="ba-title">The bigger diagram is not the better one.</h2>
+          <p>Two designs for the same product. Neither is correct in the abstract. Each is correct — or wrong — for its requirements.</p>
+        </div>
+
+        <div data-tabs>
+          <div class="tabs__list" role="tablist" aria-label="Design for" hidden>
+            <button class="tab" role="tab" id="tab-100" aria-controls="panel-100" aria-selected="true">100 users</button>
+            <button class="tab" role="tab" id="tab-1m" aria-controls="panel-1m" aria-selected="false" tabindex="-1">1,000,000 users</button>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-100" aria-labelledby="tab-100">
+            <h3>Designed for 100 users</h3>
+            <div class="arch">
+              <div class="arch__row"><span class="arch__layer">Client</span><div class="arch__nodes"><span class="node">Browser</span></div></div>
+              <div class="arch__row"><span class="arch__layer">Application</span><div class="arch__nodes"><span class="node node--core">One application process</span></div></div>
+              <div class="arch__row"><span class="arch__layer">Data</span><div class="arch__nodes"><span class="node">One relational database</span></div></div>
+              <div class="arch__row"><span class="arch__layer">Operations</span><div class="arch__nodes"><span class="node">Automated backups</span><span class="node">Basic logs &amp; alerts</span></div></div>
+            </div>
+            <div class="arch__verdict">
+              <p><strong>What this buys:</strong> a system one person can hold in their head, deploy in minutes and debug at 2 a.m.</p>
+              <p><strong>What would change it:</strong> sustained load, a second team, or an availability requirement this design can't meet.</p>
+            </div>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-1m" aria-labelledby="tab-1m">
+            <h3>Designed for 1,000,000 users</h3>
+            <div class="arch">
+              <div class="arch__row"><span class="arch__layer">Client</span><div class="arch__nodes"><span class="node">Browsers</span><span class="node">Mobile apps</span></div></div>
+              <div class="arch__row"><span class="arch__layer">Edge</span><div class="arch__nodes"><span class="node">CDN</span><span class="node">Load balancer</span><span class="node">Rate limiting</span></div></div>
+              <div class="arch__row"><span class="arch__layer">Application</span><div class="arch__nodes"><span class="node node--core">Stateless app instances ×N</span><span class="node">Background workers</span></div></div>
+              <div class="arch__row"><span class="arch__layer">Data</span><div class="arch__nodes"><span class="node">Primary database</span><span class="node">Read replicas</span><span class="node">Cache</span><span class="node">Message queue</span></div></div>
+              <div class="arch__row"><span class="arch__layer">Operations</span><div class="arch__nodes"><span class="node">Metrics</span><span class="node">Tracing</span><span class="node">Alerting &amp; on-call</span><span class="node">Capacity planning</span></div></div>
+            </div>
+            <div class="arch__verdict">
+              <p><strong>What this buys:</strong> headroom, failure isolation and the ability to see what's happening under load.</p>
+              <p><strong>What it costs:</strong> every extra box is something to run, secure, monitor and understand. Built for 100 users, it's a mistake.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUESTIONS -->
+    <section class="section section--white" aria-labelledby="q-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">The questions we keep asking</p>
+          <h2 id="q-title">If you can't answer these, the code isn't finished.</h2>
+        </div>
+        <ul class="questions">
+          <li>Can you explain the system you just built?</li>
+          <li>What happens when it fails?</li>
+          <li>Why this architecture?</li>
+          <li>What are you assuming?</li>
+          <li>What happens at 10× scale?</li>
+          <li>Is this actually necessary?</li>
+          <li>What did AI decide for you?</li>
+          <li>Do you agree with it?</li>
+          <li>Can you defend the decision?</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section cta grid-bg" aria-labelledby="cta-title">
+      <div class="wrap">
+        <h2 id="cta-title">Disagree? Good.</h2>
+        <p>These are positions, not slogans. If you think one is wrong, bring us the case.</p>
+        <div class="btn-row">
+          <a class="btn" href="contact.html">Start a conversation
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="method.html">See the method</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="site-footer__top">
+        <div>
+          <a class="wordmark" href="index.html">Codeworm</a>
+          <p class="tagline">Technology changes. Engineering reasoning transfers.</p>
+        </div>
+        <nav aria-label="Footer">
+          <ul>
+            <li><a href="philosophy.html">Philosophy</a></li>
+            <li><a href="build-lab.html">Build-Lab</a></li>
+            <li><a href="method.html">Method</a></li>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© 2026 CODEWORM Build Lab</span>
+        <span class="status">Open to problems</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

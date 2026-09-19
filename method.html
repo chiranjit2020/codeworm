@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Method — CODEWORM Build Lab</title>
+  <meta name="description" content="How we reason about systems: language-independent decisions, security as judgment, and using AI as an implementation partner rather than an authority.">
+  <link rel="canonical" href="https://codeworm.dev/method.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CODEWORM Build Lab">
+  <meta property="og:title" content="Method — CODEWORM Build Lab">
+  <meta property="og:description" content="Language-independent decisions, security as judgment, AI as an implementation partner.">
+  <meta property="og:url" content="https://codeworm.dev/method.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#f9f9fd">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="wordmark" href="index.html" aria-label="CODEWORM Build Lab — home">Codeworm <small>Build Lab</small></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="philosophy.html">Philosophy</a></li>
+          <li><a href="build-lab.html">Build-Lab</a></li>
+          <li><a href="method.html" aria-current="page">Method</a></li>
+          <li><a href="labs.html">Labs</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero grid-bg">
+      <div class="wrap">
+        <p class="eyebrow">Method</p>
+        <h1 class="wide">How we reason about systems.</h1>
+        <p class="lead">Three habits that apply to any language, any framework and any AI tool: decide with reasons, treat security as part of the design, and never confuse generated with understood.</p>
+      </div>
+    </section>
+
+    <!-- LANGUAGE-INDEPENDENT -->
+    <section class="section section--white" aria-labelledby="lang-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">01 — Decisions</p>
+          <h2 id="lang-title">We don't care which language you choose.</h2>
+          <p>We care whether you can explain why you chose it. The route from problem to code is the same whatever the stack.</p>
+        </div>
+
+        <ol class="flow" aria-label="From problem to implementation" style="margin-bottom: var(--s-8)">
+          <li><b>Problem</b></li>
+          <li><b>Constraints</b></li>
+          <li><b>Requirements</b></li>
+          <li><b>Technology options</b></li>
+          <li><b>Trade-offs</b></li>
+          <li class="is-decision"><b>Decision</b></li>
+          <li><b>Implementation</b></li>
+        </ol>
+
+        <div class="scenario">
+          <p class="tagline">Worked question</p>
+          <p>An order-tracking service for a small team. Data is mostly customers, orders and line items. Which database — and why?</p>
+        </div>
+
+        <div data-tabs>
+          <div class="tabs__list" role="tablist" aria-label="Database options" hidden>
+            <button class="tab" role="tab" id="tab-pg" aria-controls="panel-pg" aria-selected="true">PostgreSQL</button>
+            <button class="tab" role="tab" id="tab-mongo" aria-controls="panel-mongo" aria-selected="false" tabindex="-1">MongoDB</button>
+            <button class="tab" role="tab" id="tab-ai" aria-controls="panel-ai" aria-selected="false" tabindex="-1">“Whatever AI picked”</button>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-pg" aria-labelledby="tab-pg">
+            <h3>PostgreSQL</h3>
+            <div class="tradeoff">
+              <div><h4>Fits when</h4><p>Data is relational, integrity matters and the questions you ask will keep changing.</p></div>
+              <div><h4>Costs</h4><p>Schema changes need discipline. Scaling writes horizontally is real work later.</p></div>
+              <div class="ask"><h4>Would change if</h4><p>The data turns out to be document-shaped, highly variable and always read as a whole.</p></div>
+            </div>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-mongo" aria-labelledby="tab-mongo">
+            <h3>MongoDB</h3>
+            <div class="tradeoff">
+              <div><h4>Fits when</h4><p>Records are self-contained documents, read and written as a unit, and their shape varies.</p></div>
+              <div><h4>Costs</h4><p>Relationships and cross-document consistency become your job. Ad-hoc reporting gets harder.</p></div>
+              <div class="ask"><h4>Would change if</h4><p>Requirements grow join-heavy, or integrity across records starts to matter more than flexibility.</p></div>
+            </div>
+          </div>
+
+          <div class="tabs__panel" role="tabpanel" id="panel-ai" aria-labelledby="tab-ai">
+            <h3>“Whatever AI picked”</h3>
+            <div class="tradeoff">
+              <div><h4>Fits when</h4><p>Only when you've checked it against the requirements and reached the same answer yourself.</p></div>
+              <div><h4>Costs</h4><p>You inherit a decision with no owner and no recorded reason.</p></div>
+              <div class="ask"><h4>The test</h4><p>Can you write the reason in one sentence? If not, the decision isn't made yet.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <p class="lead" style="margin-top: var(--s-7); color: var(--fg); font-family: var(--font-display); font-weight: 700;">“Why MongoDB?” matters more than “Can you write a MongoDB query?”</p>
+      </div>
+    </section>
+
+    <!-- SECURITY -->
+    <section class="section section--dark" aria-labelledby="sec-title">
+      <div class="wrap split split--wide-right">
+        <div class="section-head" style="margin-bottom:0">
+          <p class="eyebrow">02 — Security</p>
+          <h2 id="sec-title">Security is not a module. It's a way of reading a system.</h2>
+          <p>We don't teach it as a checklist at the end. We ask the same six questions of every system from the first sketch.</p>
+        </div>
+
+        <div class="tree" role="group" aria-label="Security questions by area">
+          <p class="tree__root">SYSTEM</p>
+          <ul>
+            <li><span class="tree__key">Trust</span><span class="tree__val">What are the trust boundaries? What should never be trusted?</span></li>
+            <li><span class="tree__key">Data</span><span class="tree__val">What data is sensitive? Where does it travel, rest and leak?</span></li>
+            <li><span class="tree__key">Users</span><span class="tree__val">Who uses this — and who can attack it?</span></li>
+            <li><span class="tree__key">Attack surface</span><span class="tree__val">What can go wrong? How do we reduce the blast radius?</span></li>
+            <li><span class="tree__key">Failure</span><span class="tree__val">What happens after compromise? How do we detect abuse?</span></li>
+            <li><span class="tree__key">Recovery</span><span class="tree__val">How do we contain, revoke and restore?</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI COLLABORATION -->
+    <section class="section" aria-labelledby="ai-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">03 — AI collaboration</p>
+          <h2 id="ai-title">Use AI as an implementation partner, not an authority.</h2>
+          <p>AI is fast, tireless and often right. It is also confident when it's wrong. Ownership stays with you.</p>
+        </div>
+
+        <ul class="principles">
+          <li><span class="n">01</span><b>Interrogate</b><p>Ask why the architecture looks this way. Make it justify each choice.</p></li>
+          <li><span class="n">02</span><b>Verify</b><p>Read generated code as if a stranger wrote it. Someone did.</p></li>
+          <li><span class="n">03</span><b>Challenge</b><p>Surface the assumptions it made silently, then decide which you accept.</p></li>
+          <li><span class="n">04</span><b>Test</b><p>Outputs are claims. Tests are how you check them.</p></li>
+          <li><span class="n">05</span><b>Catch hallucinations</b><p>Invented APIs, imaginary options, plausible nonsense. Check them against the docs.</p></li>
+          <li><span class="n">06</span><b>Understand dependencies</b><p>Every package it added is code you now depend on and must trust.</p></li>
+          <li><span class="n">07</span><b>Inspect security</b><p>Look at input handling, secrets, permissions and what happens on failure.</p></li>
+          <li><span class="n">08</span><b>Simplify</b><p>Generated code tends to add. Your job is often to take away.</p></li>
+          <li><span class="n">09</span><b>Own</b><p>Keep the decisions. If you couldn't defend it, don't ship it.</p></li>
+        </ul>
+
+        <div class="quote" style="margin-top: clamp(48px, 7vw, 96px)">
+          <p>Never confuse generated with understood.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAILURE -->
+    <section class="section section--white" aria-labelledby="fail-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">04 — Failure</p>
+          <h2 id="fail-title">Failure is where the reasoning becomes visible.</h2>
+          <p>When a system breaks, the assumptions behind it come to the surface. We investigate in four moves.</p>
+        </div>
+        <ol class="anatomy">
+          <li><span class="n">01</span><span class="k">Reproduce</span><p>Make it fail on demand. Until you can, you're guessing.</p></li>
+          <li><span class="n">02</span><span class="k">Isolate</span><p>Shrink the problem until only the cause is left.</p></li>
+          <li><span class="n">03</span><span class="k">Explain</span><p>State why it happens in plain language. If you can't, you haven't found it.</p></li>
+          <li><span class="n">04</span><span class="k">Prevent</span><p>Change the design or the checks so this class of failure is caught next time.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section cta grid-bg" aria-labelledby="cta-title">
+      <div class="wrap">
+        <h2 id="cta-title">Try it on something real.</h2>
+        <p>The method works on your own systems. Bring an architecture to review or a failure to investigate.</p>
+        <div class="btn-row">
+          <a class="btn" href="contact.html?intent=review-architecture">Review an architecture
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="labs.html">See the experiments</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="site-footer__top">
+        <div>
+          <a class="wordmark" href="index.html">Codeworm</a>
+          <p class="tagline">Technology changes. Engineering reasoning transfers.</p>
+        </div>
+        <nav aria-label="Footer">
+          <ul>
+            <li><a href="philosophy.html">Philosophy</a></li>
+            <li><a href="build-lab.html">Build-Lab</a></li>
+            <li><a href="method.html">Method</a></li>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© 2026 CODEWORM Build Lab</span>
+        <span class="status">Open to problems</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Build Lab — CODEWORM</title>
+  <meta name="description" content="A laboratory for developing engineering judgment. Ten stages from problem to defence — and the reasoning that tutorials hide behind finished code.">
+  <link rel="canonical" href="https://codeworm.dev/build-lab.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CODEWORM Build Lab">
+  <meta property="og:title" content="Build Lab — CODEWORM">
+  <meta property="og:description" content="A laboratory for developing engineering judgment. Not a place to watch programming lessons.">
+  <meta property="og:url" content="https://codeworm.dev/build-lab.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#f9f9fd">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="wordmark" href="index.html" aria-label="CODEWORM Build Lab — home">Codeworm <small>Build Lab</small></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="philosophy.html">Philosophy</a></li>
+          <li><a href="build-lab.html" aria-current="page">Build-Lab</a></li>
+          <li><a href="method.html">Method</a></li>
+          <li><a href="labs.html">Labs</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero grid-bg">
+      <div class="wrap">
+        <p class="eyebrow">Build Lab</p>
+        <h1 class="wide">A laboratory for developing engineering judgment.</h1>
+        <p class="lead">Not a place to watch programming lessons. A place to take a real problem through modelling, decisions, failure and defence — with AI as a partner and you as the owner.</p>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section section--white" aria-labelledby="process-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">The process</p>
+          <h2 id="process-title">Ten stages. None of them is “write the code.”</h2>
+          <p>Building is one stage of ten. The rest is what separates a system that runs from a system you can own.</p>
+        </div>
+
+        <ol class="timeline">
+          <li><span class="timeline__n">01</span><h3 class="timeline__name">Problem</h3><p>Start with the situation, not the solution. What is actually being asked, by whom, and what happens if it's never solved?</p></li>
+          <li><span class="timeline__n">02</span><h3 class="timeline__name">Model</h3><p>Draw the system before it exists: actors, data, boundaries, constraints. If you can't model it, you can't judge what AI produces for it.</p></li>
+          <li><span class="timeline__n">03</span><h3 class="timeline__name">Decide</h3><p>Choose an architecture and technologies, and write down why — including what you rejected and what would change your mind.</p></li>
+          <li><span class="timeline__n">04</span><h3 class="timeline__name">Build</h3><p>Implement, with AI as a fast partner. Generate freely. Read everything you keep.</p></li>
+          <li><span class="timeline__n">05</span><h3 class="timeline__name">Break</h3><p>Attack your own system. Bad input, dead dependencies, real load, hostile users. Find the failure before it finds you.</p></li>
+          <li><span class="timeline__n">06</span><h3 class="timeline__name">Investigate</h3><p>Find out why it failed. Reproduce, isolate, explain. A patch without an explanation is a coincidence.</p></li>
+          <li><span class="timeline__n">07</span><h3 class="timeline__name">Secure</h3><p>Return to the trust boundaries. Decide what must never be trusted, reduce the blast radius, and choose what you'll be able to detect.</p></li>
+          <li><span class="timeline__n">08</span><h3 class="timeline__name">Verify</h3><p>Prove it does what you claim. Tests, evidence, and an honest account of what remains unproven.</p></li>
+          <li><span class="timeline__n">09</span><h3 class="timeline__name">Ship</h3><p>Release with a way back, a way to observe, and someone who knows what “healthy” looks like.</p></li>
+          <li><span class="timeline__n">10</span><h3 class="timeline__name">Defend</h3><p>Explain the system to someone who disagrees. A decision you can't defend is a decision you didn't make.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ANTI-TUTORIAL -->
+    <section class="section section--dark" id="anti-tutorial" aria-labelledby="anti-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Anti-tutorial</p>
+          <h2 id="anti-title">We don't hide the thinking behind finished code.</h2>
+          <p>A tutorial shows you the answer, cleaned up. The reasoning that produced it — the hypotheses, the dead ends, the failures — normally disappears. We keep it.</p>
+        </div>
+
+        <div class="compare">
+          <div class="compare__col">
+            <p class="compare__title">Traditional tutorial</p>
+            <ol class="steps steps--dim">
+              <li><span>Watch</span></li>
+              <li><span>Copy</span></li>
+              <li><span>Run</span></li>
+              <li><span>Done</span></li>
+            </ol>
+          </div>
+          <div class="compare__col compare__col--lab">
+            <p class="compare__title">Build Lab</p>
+            <ol class="steps">
+              <li><span>Problem</span></li>
+              <li class="hidden-thinking"><span>Hypothesis</span></li>
+              <li><span>Decision</span></li>
+              <li><span>Implementation</span></li>
+              <li class="hidden-thinking"><span>Failure</span></li>
+              <li class="hidden-thinking"><span>Investigation</span></li>
+              <li class="hidden-thinking"><span>Revision</span></li>
+              <li><span>Verification</span></li>
+            </ol>
+            <p class="legend"><i aria-hidden="true"></i> Usually invisible in a finished tutorial.</p>
+          </div>
+        </div>
+
+        <p class="lead" style="margin-top: var(--s-7)">The goal isn't to stop teaching. It's to expose the reasoning that normally disappears behind the finished implementation.</p>
+      </div>
+    </section>
+
+    <!-- WHO -->
+    <section class="section" aria-labelledby="who-title">
+      <div class="wrap split">
+        <div class="section-head" style="margin-bottom:0">
+          <p class="eyebrow">Who it's for</p>
+          <h2 id="who-title">Developers who can already build, and want to be sure it's the right thing.</h2>
+        </div>
+        <div class="stack">
+          <p class="lead" style="color: var(--fg)">Build Lab is written for experienced developers and serious intermediates moving toward professional engineering — people who can write or generate working code and now want stronger judgment about it.</p>
+          <p class="lead">Newer developers are welcome. But the work assumes you can get something running. What it asks is whether you understand what you got.</p>
+          <ul class="notlist" style="margin-top: var(--s-6)">
+            <li>Not tied to a language or framework.</li>
+            <li>Not a race to a job title.</li>
+            <li>Not a catalogue of video lessons.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta grid-bg" aria-labelledby="cta-title">
+      <div class="wrap">
+        <h2 id="cta-title">Start with your problem.</h2>
+        <p>There's no catalogue to browse. Tell us what you're building, what keeps failing or what you don't understand — we'll start the conversation there.</p>
+        <div class="btn-row">
+          <a class="btn" href="contact.html?intent=learn-build-lab">Talk about Build Lab
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="labs.html">See the experiments</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="site-footer__top">
+        <div>
+          <a class="wordmark" href="index.html">Codeworm</a>
+          <p class="tagline">Technology changes. Engineering reasoning transfers.</p>
+        </div>
+        <nav aria-label="Footer">
+          <ul>
+            <li><a href="philosophy.html">Philosophy</a></li>
+            <li><a href="build-lab.html">Build-Lab</a></li>
+            <li><a href="method.html">Method</a></li>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© 2026 CODEWORM Build Lab</span>
+        <span class="status">Open to problems</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

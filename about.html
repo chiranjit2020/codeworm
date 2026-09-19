@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — CODEWORM Build Lab</title>
+  <meta name="description" content="Why CODEWORM exists: years of teaching and building software, and the realisation that developers now need stronger judgment, not faster typing.">
+  <link rel="canonical" href="https://codeworm.dev/about.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CODEWORM Build Lab">
+  <meta property="og:title" content="About — CODEWORM Build Lab">
+  <meta property="og:description" content="The next generation of developers needs stronger judgment, not merely faster typing.">
+  <meta property="og:url" content="https://codeworm.dev/about.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#f9f9fd">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="wordmark" href="index.html" aria-label="CODEWORM Build Lab — home">Codeworm <small>Build Lab</small></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="philosophy.html">Philosophy</a></li>
+          <li><a href="build-lab.html">Build-Lab</a></li>
+          <li><a href="method.html">Method</a></li>
+          <li><a href="labs.html">Labs</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero grid-bg">
+      <div class="wrap">
+        <p class="eyebrow">About</p>
+        <h1 class="wide">Faster typing was never the point.</h1>
+        <p class="lead">CODEWORM started from a simple observation about what programming education has been optimising for.</p>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section class="section section--white" aria-labelledby="why-title">
+      <div class="wrap split split--wide-right">
+        <div class="section-head" style="margin-bottom:0">
+          <p class="eyebrow">Why CODEWORM exists</p>
+          <h2 id="why-title">We spent years teaching the part that's now being automated.</h2>
+        </div>
+        <div class="prose">
+          <p>For years we taught developers to write code. For years we built software ourselves. Both taught us the same thing: the hard part was never the syntax.</p>
+          <p>Then AI began writing code, applications, tests and documentation. Much of what programming education sells — how to produce an implementation — is becoming a commodity.</p>
+          <p>What isn't becoming a commodity is knowing what to build, why, and whether the thing that got built is any good. <strong>The next generation of developers needs stronger judgment, not merely faster typing.</strong></p>
+          <p>CODEWORM Build Lab is our attempt to teach that. We don't claim to have finished working out how.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STANCE -->
+    <section class="section section--dark" aria-labelledby="stance-title">
+      <div class="wrap split">
+        <div class="section-head" style="margin-bottom:0">
+          <p class="eyebrow">What we won't do</p>
+          <h2 id="stance-title">The tone is part of the product.</h2>
+        </div>
+        <ul class="notlist">
+          <li>Promise jobs, or timelines to a job.</li>
+          <li>Manufacture urgency.</li>
+          <li>Claim AI does more — or less — than it does.</li>
+          <li>Sell a framework as if it were a career.</li>
+          <li>Hide the parts that went wrong.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section class="section" aria-labelledby="research-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Still researching</p>
+          <h2 id="research-title">CODEWORM is itself an experiment.</h2>
+          <p>We're continuously building, breaking and re-examining our own assumptions — in the labs, and in how we teach. When we change our minds, we'll say so.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLOPHON -->
+    <section class="section section--white" id="colophon" aria-labelledby="colophon-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">How this site is built</p>
+          <h2 id="colophon-title">The website should practise what it teaches.</h2>
+          <p>Six decisions, with the reasoning and the cost. If the requirements change, so will these.</p>
+        </div>
+
+        <dl class="decisions">
+          <div>
+            <dt>Plain HTML, CSS and JavaScript</dt>
+            <dd><b>Why</b>Seven mostly static pages with no shared runtime state. Nothing needs hydrating, so nothing needs a framework.</dd>
+            <dd><b>Cost</b>The header and footer are repeated in every file. Accepted at seven pages.</dd>
+          </div>
+          <div>
+            <dt>No Astro, no React</dt>
+            <dd><b>Why</b>A build step and a dependency tree would add moving parts without meeting any requirement we have.</dd>
+            <dd><b>Revisit when</b>Field notes and case studies make content, not layout, the main thing we maintain.</dd>
+          </div>
+          <div>
+            <dt>JavaScript only as enhancement</dt>
+            <dd><b>Why</b>One small script handles the menu, tabs, and the reveal interactions. Every page reads and works without it.</dd>
+            <dd><b>Cost</b>A few interactions are simpler without JavaScript than with it — that's deliberate.</dd>
+          </div>
+          <div>
+            <dt>No PWA (yet)</dt>
+            <dd><b>Why</b>There's no offline content worth caching. Installability would be complexity for its own sake.</dd>
+            <dd><b>Revisit when</b>There are field notes worth reading offline.</dd>
+          </div>
+          <div>
+            <dt>Contact form opens your email app</dt>
+            <dd><b>Why</b>No server, no database, no stored personal data, nothing to secure or breach.</dd>
+            <dd><b>Cost</b>No delivery confirmation, and it depends on the visitor having an email client. Revisit if volume justifies a backend.</dd>
+          </div>
+          <div>
+            <dt>Two typefaces, from a font service</dt>
+            <dd><b>Why</b>A grotesk for display and Manrope for everything else carry the identity without decoration.</dd>
+            <dd><b>Cost</b>A third-party request. Self-hosting is the next step if performance or privacy demands it.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section cta grid-bg" aria-labelledby="cta-title">
+      <div class="wrap">
+        <h2 id="cta-title">Disagree with a decision?</h2>
+        <p>Tell us which one and why. That's the kind of conversation we're here for.</p>
+        <a class="btn" href="contact.html">Start a conversation
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="site-footer__top">
+        <div>
+          <a class="wordmark" href="index.html">Codeworm</a>
+          <p class="tagline">Technology changes. Engineering reasoning transfers.</p>
+        </div>
+        <nav aria-label="Footer">
+          <ul>
+            <li><a href="philosophy.html">Philosophy</a></li>
+            <li><a href="build-lab.html">Build-Lab</a></li>
+            <li><a href="method.html">Method</a></li>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© 2026 CODEWORM Build Lab</span>
+        <span class="status">Open to problems</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,2 +1,0 @@
-# codeworm
-A youtube channel
