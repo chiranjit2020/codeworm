@@ -26,20 +26,32 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  /* Black box: the decision layer is redacted until the reader reveals it */
-  document.querySelectorAll('[data-blackbox]').forEach((box) => {
-    const btn = box.querySelector('[data-blackbox-toggle]');
-    if (!btn) return;
-    const label = btn.querySelector('span');
-    btn.hidden = false;
-    box.dataset.state = 'hidden';
-    btn.addEventListener('click', () => {
-      const reveal = box.dataset.state === 'hidden';
-      box.dataset.state = reveal ? 'revealed' : 'hidden';
-      btn.setAttribute('aria-pressed', String(reveal));
-      label.textContent = reveal ? 'Hide the decision layer' : 'Reveal the decision layer';
+  /* Theme: the saved or system choice is applied by an inline script in <head>
+     (so there is no flash); this only wires up the switch. */
+  const root = document.documentElement;
+  const themeBtn = document.querySelector('.theme-toggle');
+  if (themeBtn) {
+    const sync = () => {
+      const dark = root.dataset.theme === 'dark';
+      themeBtn.setAttribute('aria-pressed', String(dark));
+      const meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.content = dark ? '#0d0d10' : '#f9f9fd';
+    };
+    sync();
+    themeBtn.addEventListener('click', () => {
+      const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+      root.classList.add('theme-anim');
+      root.dataset.theme = next;
+      try { localStorage.setItem('cw-theme', next); } catch (e) { /* private mode: applies for this visit only */ }
+      sync();
+      setTimeout(() => root.classList.remove('theme-anim'), 400);
     });
-  });
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      try { if (localStorage.getItem('cw-theme')) return; } catch (err) { /* ignore */ }
+      root.dataset.theme = e.matches ? 'dark' : 'light';
+      sync();
+    });
+  }
 
   /* Tabs (WAI-ARIA tab pattern). Without JS every panel is simply shown. */
   document.querySelectorAll('[data-tabs]').forEach((root) => {
