@@ -49,6 +49,7 @@
           <li><a href="build-lab.html">Build-Lab</a></li>
           <li><a href="method.html">Method</a></li>
           <li><a href="labs.html">Labs</a></li>
+          <li><a href="field-notes/">Field Notes</a></li>
           <li><a href="about.html" aria-current="page">About</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -122,19 +123,19 @@
         <div class="section-head">
           <p class="eyebrow">How this site is built</p>
           <h2 id="colophon-title">The website should practice what it teaches.</h2>
-          <p>Ten decisions, with the reasoning and the cost. If the requirements change, so will these.</p>
+          <p>Eleven decisions, with the reasoning and the cost. If the requirements change, so will these.</p>
         </div>
 
         <dl class="decisions">
           <div>
             <dt>Plain HTML, CSS and JavaScript</dt>
-            <dd><b>Why</b>Seven mostly static pages with no shared runtime state. Nothing needs hydrating, so nothing needs a framework.</dd>
-            <dd><b>Cost</b>The header and footer are repeated in every file. Accepted at seven pages.</dd>
+            <dd><b>Why</b>Nine mostly static pages with no shared runtime state. Nothing needs hydrating, so nothing needs a framework.</dd>
+            <dd><b>Cost</b>The header and footer are repeated in every file. Accepted at nine pages.</dd>
           </div>
           <div>
             <dt>No Astro, no React</dt>
             <dd><b>Why</b>A build step and a dependency tree would add moving parts without meeting any requirement we have.</dd>
-            <dd><b>Revisit when</b>Field notes and case studies make content, not layout, the main thing we maintain.</dd>
+            <dd><b>Revisit when</b>Field notes stop being a handful of hand-written articles and become dozens, or case studies arrive, and content, not layout, is the main thing we maintain.</dd>
           </div>
           <div>
             <dt>JavaScript only as enhancement</dt>
@@ -165,6 +166,11 @@
             <dt>Installable, and readable offline</dt>
             <dd><b>Why</b>A manifest and one small service worker: every page works offline after a first visit, and the site can live on a home screen. Content is fetched fresh whenever you’re online.</dd>
             <dd><b>Cost</b>A cache to keep honest. The worker has a version constant that must change when files are added or removed. There is still no offline content beyond the site itself.</dd>
+          </div>
+          <div>
+            <dt>Field notes: hand-written pages, one data file, one small script</dt>
+            <dd><b>Why</b>Each note is a plain HTML page, so it reads, indexes and works offline like any other. One JSON file lists them, and a short Node script rebuilds the index, the home page list, the sitemap and the feed from it. No framework, no markdown pipeline, no dependencies.</dd>
+            <dd><b>Cost</b>A new note means copying an article, editing the JSON and running the script. Nothing runs on a schedule, and forgetting to run it leaves the lists stale. Revisit when that becomes a real chore.</dd>
           </div>
           <div>
             <dt>Contact form opens your email app</dt>
@@ -208,6 +214,7 @@
             <li><a href="build-lab.html">Build-Lab</a></li>
             <li><a href="method.html">Method</a></li>
             <li><a href="labs.html">Labs</a></li>
+            <li><a href="field-notes/">Field Notes</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>

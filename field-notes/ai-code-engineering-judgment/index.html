@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Can Write the Code. Who Reviews the Engineering? | CODEWORM</title>
+  <meta name="description" content="AI can generate software faster than ever. The harder problem is understanding the architecture, assumptions, trade-offs and risks behind what it generates.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.chiranjitkarmakar.com/codeworm/field-notes/ai-code-engineering-judgment/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="CODEWORM Build Lab">
+  <meta property="og:title" content="AI Can Write the Code. Who Reviews the Engineering?">
+  <meta property="og:description" content="The new problem isn’t code generation. It’s knowing whether the generated system deserves to exist.">
+  <meta property="og:url" content="https://www.chiranjitkarmakar.com/codeworm/field-notes/ai-code-engineering-judgment/">
+  <meta property="og:image" content="https://www.chiranjitkarmakar.com/codeworm/img/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="CODEWORM Build Lab: AI writes the code. You own the decisions.">
+  <meta property="og:locale" content="en">
+  <meta property="article:published_time" content="2026-09-20">
+  <meta property="article:section" content="AI / Engineering Judgment">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.chiranjitkarmakar.com/codeworm/img/og.png">
+  <meta name="twitter:image:alt" content="CODEWORM Build Lab: AI writes the code. You own the decisions.">
+  <meta name="theme-color" content="#f9f9fd">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="../../manifest.webmanifest">
+  <link rel="apple-touch-icon" href="../../icons/apple-touch-icon.png">
+  <link rel="alternate" type="application/rss+xml" title="CODEWORM Field Notes" href="../../feed.xml">
+  <meta name="apple-mobile-web-app-title" content="CODEWORM">
+  <link rel="preload" href="../../fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../../fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../css/styles.css">
+  <meta name="color-scheme" content="light">
+  <script>document.documentElement.classList.add('js')</script>
+  <script src="../../js/vendor/lenis.min.js" defer></script>
+  <script src="../../js/main.js" defer></script>
+  <script src="../../js/motion.js" defer></script>
+  <script src="../../js/reading.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"AI Can Write the Code. Who Reviews the Engineering?","description":"AI can generate software faster than ever. The harder problem is understanding the architecture, assumptions, trade-offs and risks behind what it generates.","datePublished":"2026-09-20","dateModified":"2026-09-20","inLanguage":"en","articleSection":"AI / Engineering Judgment","mainEntityOfPage":"https://www.chiranjitkarmakar.com/codeworm/field-notes/ai-code-engineering-judgment/","image":"https://www.chiranjitkarmakar.com/codeworm/img/og.png","author":{"@id":"https://www.chiranjitkarmakar.com/codeworm/#org"},"publisher":{"@id":"https://www.chiranjitkarmakar.com/codeworm/#org"},"isPartOf":{"@id":"https://www.chiranjitkarmakar.com/codeworm/#site"}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <a class="wordmark" href="../../index.html" aria-label="CODEWORM Build Lab — home"><img class="wordmark__logo" src="../../img/codeworm-logo.png" alt="" width="454" height="259"> <small>Build Lab</small></a>
+      <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="../../philosophy.html">Philosophy</a></li>
+          <li><a href="../../build-lab.html">Build-Lab</a></li>
+          <li><a href="../../method.html">Method</a></li>
+          <li><a href="../../labs.html">Labs</a></li>
+          <li><a href="../" aria-current="true">Field Notes</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="header-tools">
+        <button class="reading-toggle" type="button" aria-pressed="false" aria-label="Reading guide" title="Reading guide: underlines the sentence you are probably reading" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 11h16"/><path d="M4 17h9" stroke-width="3.5"/></svg>
+        </button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <article>
+
+      <header class="page-hero grid-bg note-head">
+        <div class="wrap">
+          <p class="note-head__id"><a href="../">Field Notes</a> <span aria-hidden="true">/</span> <span class="note-num">Field Note 001</span></p>
+          <p class="eyebrow">AI / Engineering Judgment</p>
+          <h1 class="wide">AI Can Write the Code. Who Reviews the Engineering?</h1>
+          <p class="lead">The new problem isn’t code generation. It’s knowing whether the generated system deserves to exist.</p>
+          <p class="note-head__meta"><span>5 min read</span><time datetime="2026-09-20">20 September 2026</time></p>
+        </div>
+      </header>
+
+      <section class="section note-section" aria-label="Introduction">
+        <div class="wrap">
+          <div class="note-body">
+            <p class="note-open">AI can now generate substantial amounts of software extremely quickly.</p>
+            <p>That changes the developer’s problem. The difficult question is increasingly not:</p>
+            <p class="note-q">“Can I write this?”</p>
+            <p>but:</p>
+            <p class="note-q note-q--on">“Should this be built this way?”</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--white note-section" aria-labelledby="n1">
+        <div class="wrap">
+          <div class="note-body">
+            <p class="note-step">01</p>
+            <h2 id="n1">More output isn’t necessarily better.</h2>
+            <p>AI can produce more code, more files, more abstractions, more documentation, more tests, more architecture and more features. All of it arrives at roughly the speed you can read the first line.</p>
+            <p>But output volume is not engineering quality. Every extra file is something to read. Every abstraction is something to maintain. Every test, dependency and feature is something that can break, be attacked, or have to change later.</p>
+            <p class="note-callout">Overproduction can become an engineering problem.</p>
+            <p>When producing code is cheap, the cost moves to everything after it: understanding it, verifying it, running it and owning it. Nothing about generation makes those costs smaller.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section note-section" aria-labelledby="n2">
+        <div class="wrap">
+          <div class="note-body">
+            <p class="note-step">02</p>
+            <h2 id="n2">The AI black box.</h2>
+            <p>Ask for an application and you can get a project structure that looks entirely reasonable:</p>
+            <figure class="note-fig">
+              <pre class="code" tabindex="0" aria-label="Example project structure"><code>src/
+  components/
+  services/
+  repositories/
+  controllers/
+  middleware/
+  utils/
+  hooks/
+  lib/
+  config/</code></pre>
+              <figcaption>An illustration, not a specific project.</figcaption>
+            </figure>
+            <p>It looks like engineering. But the developer who received it may not know:</p>
+            <ul class="note-list-plain">
+              <li>Why these layers exist</li>
+              <li>Why these abstractions were introduced</li>
+              <li>Which dependencies matter</li>
+              <li>Which assumptions were made</li>
+              <li>Which patterns are actually necessary</li>
+              <li>What happens when something fails</li>
+            </ul>
+            <p>The system appears to have materialized out of nowhere. The reasoning that produced it is gone, and the developer has to reconstruct it before they can judge it.</p>
+
+            <div class="fn-block" role="group" aria-label="Investigation block">
+              <dl>
+                <div><dt>Observation</dt><dd>The structure has nine top-level folders.</dd></div>
+                <div><dt>Question</dt><dd>Which of them does this problem actually require?</dd></div>
+                <div><dt>How to check</dt><dd>For each layer, say what it separates from what. If you can’t, take it out on a branch and see what you lose.</dd></div>
+              </dl>
+            </div>
+
+            <p>Inspecting the reasoning behind an implementation is the habit we build in Build Lab. It’s why we use an <a href="../../build-lab.html#anti-tutorial">Anti-Tutorial approach</a>: the thinking stays visible instead of disappearing behind finished code.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--white note-section" aria-labelledby="n3">
+        <div class="wrap">
+          <div class="note-body">
+            <p class="note-step">03</p>
+            <h2 id="n3">Overengineering and underengineering.</h2>
+            <p>A system can be wrong in two directions.</p>
+            <div class="note-pair">
+              <div>
+                <h3>Underengineered</h3>
+                <p>Too simple for its actual requirements.</p>
+                <ul class="note-list-plain">
+                  <li>Weak validation</li>
+                  <li>Poor security</li>
+                  <li>No meaningful failure handling</li>
+                  <li>Insufficient observability</li>
+                  <li>Fragile data handling</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Overengineered</h3>
+                <p>More complex than the requirements justify.</p>
+                <ul class="note-list-plain">
+                  <li>Unnecessary microservices</li>
+                  <li>Excessive abstractions</li>
+                  <li>Premature scaling</li>
+                  <li>Unnecessary dependencies</li>
+                  <li>A complicated architecture for a simple problem</li>
+                </ul>
+              </div>
+            </div>
+            <p>Generated code drifts easily toward the second. More is the default output. So the judgment has to come from a person who knows what the requirements actually are.</p>
+            <p class="definition">Build the simplest system that adequately satisfies the actual requirements — and know when that simplicity must change.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section note-section" aria-labelledby="n4">
+        <div class="wrap">
+          <div class="note-body">
+            <p class="note-step">04</p>
+            <h2 id="n4">The developer’s new job.</h2>
+            <p>If the implementation is cheap, the questions around it are the job. A developer should increasingly be able to answer:</p>
+            <ol class="note-questions">
+              <li>Why this architecture?</li>
+              <li>Why this database?</li>
+              <li>Why this language?</li>
+              <li>What assumptions are we making?</li>
+              <li>What happens when this fails?</li>
+              <li>Where are the trust boundaries?</li>
+              <li>What happens at 10× scale?</li>
+              <li>What happens if the requirements change?</li>
+              <li>What did AI decide?</li>
+              <li>Do we agree with that decision?</li>
+            </ol>
+            <p>None of these are answered by the code. They’re answered by the person responsible for it.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--dark note-section note-section--statement" aria-labelledby="n5">
+        <div class="wrap">
+          <div class="note-body">
+            <p class="note-step">05</p>
+            <h2 id="n5" class="statement">Generated is <em>not</em> the same as understood.</h2>
+            <p>AI-generated implementation still needs human comprehension, verification and ownership. Code that runs is evidence that something was produced. It isn’t evidence that anyone knows why it works, when it stops working, or what it quietly assumes.</p>
+            <p>The goal isn’t to reject AI. The goal is to use it without surrendering engineering judgment.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section note-section" aria-labelledby="n6">
+        <div class="wrap">
+          <div class="note-body">
+            <p class="note-step">Next</p>
+            <h2 id="n6">What to question next.</h2>
+            <p>Open the last thing AI generated for you. Pick one layer, one dependency and one decision you didn’t make. For each, write one sentence explaining why it’s there. Where you can’t, you’ve found what to investigate.</p>
+            <p class="note-close">AI can generate the implementation.<br>The developer still owns the decision.</p>
+            <p>This note is a position, not a result. The <a href="../../labs.html">Labs</a> are where we test positions like it. This is the kind of problem we investigate inside <a href="../../build-lab.html">Build Lab</a>.</p>
+            <p><a class="link-arrow" href="../../build-lab.html">Explore Build Lab
+              <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></a></p>
+          </div>
+        </div>
+      </section>
+
+    </article>
+
+    <section class="section cta grid-bg" aria-labelledby="cta-title">
+      <div class="wrap">
+        <div class="cta__card glass">
+          <h2 id="cta-title">Have a problem worth investigating?</h2>
+          <p>Bring us the architecture, failure, decision or question.</p>
+          <a class="btn" href="../../contact.html">Start a conversation
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5M8 5h11v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="site-footer__top">
+        <div>
+          <a class="wordmark" href="../../index.html" aria-label="CODEWORM Build Lab — home"><img class="wordmark__logo wordmark__logo--footer" src="../../img/codeworm-logo.png" alt="" width="454" height="259"></a>
+          <p class="tagline">Technology changes. Engineering reasoning transfers.</p>
+          <a class="wa-link" href="https://wa.me/918918669308" target="_blank" rel="noopener" aria-label="Chat on WhatsApp: +91 89186 69308"><span class="wa-link__icon" aria-hidden="true"></span>+91 89186 69308</a>
+        </div>
+        <nav aria-label="Footer">
+          <ul>
+            <li><a href="../../philosophy.html">Philosophy</a></li>
+            <li><a href="../../build-lab.html">Build-Lab</a></li>
+            <li><a href="../../method.html">Method</a></li>
+            <li><a href="../../labs.html">Labs</a></li>
+            <li><a href="../">Field Notes</a></li>
+            <li><a href="../../about.html">About</a></li>
+            <li><a href="../../contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <span>© 2026 CODEWORM Build Lab</span>
+        <span class="site-footer__meta"><button class="install" type="button" hidden>Install app</button><span class="status">Open to problems</span></span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

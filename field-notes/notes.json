@@ -1,0 +1,15 @@
+[
+  {
+    "id": "ai-code-engineering-judgment",
+    "number": "001",
+    "title": "AI Can Write the Code. Who Reviews the Engineering?",
+    "slug": "ai-code-engineering-judgment",
+    "subtitle": "The new problem isn’t code generation. It’s knowing whether the generated system deserves to exist.",
+    "category": "AI / Engineering Judgment",
+    "date": "2026-09-20",
+    "readingTime": "5 min",
+    "description": "AI can generate software faster than ever. The harder problem is understanding the architecture, assumptions, trade-offs and risks behind what it generates.",
+    "tags": ["ai", "engineering-judgment", "architecture", "proportional-engineering"],
+    "featured": true
+  }
+]

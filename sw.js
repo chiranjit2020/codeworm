@@ -10,7 +10,7 @@
 
    Bump VERSION when the SHELL list changes (files added/removed). Content
    edits do not need a bump: network-first picks them up. */
-const VERSION = 'cw-v3';
+const VERSION = 'cw-v4';
 
 const SHELL = [
   './',
@@ -21,6 +21,8 @@ const SHELL = [
   'labs.html',
   'about.html',
   'contact.html',
+  'field-notes/',
+  'field-notes/ai-code-engineering-judgment/',
   'css/styles.css',
   'js/main.js',
   'js/motion.js',

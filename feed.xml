@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CODEWORM Field Notes</title>
+    <link>https://www.chiranjitkarmakar.com/codeworm/field-notes/</link>
+    <atom:link href="https://www.chiranjitkarmakar.com/codeworm/feed.xml" rel="self" type="application/rss+xml"/>
+    <description>Short investigations into software, AI, engineering judgment, architecture, failure and security.</description>
+    <language>en</language>
+    <item>
+      <title>AI Can Write the Code. Who Reviews the Engineering?</title>
+      <link>https://www.chiranjitkarmakar.com/codeworm/field-notes/ai-code-engineering-judgment/</link>
+      <guid isPermaLink="true">https://www.chiranjitkarmakar.com/codeworm/field-notes/ai-code-engineering-judgment/</guid>
+      <pubDate>Sun, 20 Sep 2026 09:00:00 GMT</pubDate>
+      <category>AI / Engineering Judgment</category>
+      <description>AI can generate software faster than ever. The harder problem is understanding the architecture, assumptions, trade-offs and risks behind what it generates.</description>
+    </item>
+  </channel>
+</rss>
