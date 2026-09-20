@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact — Bring us a problem | CODEWORM Build Lab</title>
@@ -86,7 +86,8 @@
           <p class="form__aside">Short is fine. Precise is better. You’ll hear back from a person.</p>
         </div>
 
-        <form class="form" id="form" data-contact data-to="info@chiranjitkarmakar.com" action="mailto:info@chiranjitkarmakar.com" method="post" enctype="text/plain">
+        <form class="form" id="form" data-contact data-to="info@chiranjitkarmakar.com">
+          <noscript><p class="form__aside">This form needs JavaScript to open your email app. Without it, write to <a href="mailto:info@chiranjitkarmakar.com?subject=Engineering%20problem">info@chiranjitkarmakar.com</a> directly.</p></noscript>
           <fieldset>
             <legend>I want to…</legend>
             <div class="chips">
