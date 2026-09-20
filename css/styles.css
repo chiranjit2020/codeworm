@@ -839,3 +839,8 @@ html.lenis, html.lenis body { height: auto; }
 .text-fg { color: var(--fg); }
 .f-display { font-family: var(--font-display); font-weight: 700; }
 .fs-h3 { font-size: var(--text-h3); }
+
+/* ---------- 30. WHATSAPP LINK ---------- */
+.wa-link { display: inline-flex; align-items: center; gap: var(--s-3); margin-top: var(--s-4); padding: 4px 0; font-family: var(--font-display); letter-spacing: .02em; text-decoration: none; color: var(--const-white); }
+.wa-link__icon { width: 24px; height: 24px; flex: none; background: currentColor; -webkit-mask: url(../img/whatsapp.svg) center / contain no-repeat; mask: url(../img/whatsapp.svg) center / contain no-repeat; }
+.wa-link:hover { color: var(--lime); }
